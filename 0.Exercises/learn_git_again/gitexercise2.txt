@@ -1,0 +1,7 @@
+1) git branch BRANCH_NAME or git checkout -b BRANCHNAME creates a branch
+2) FF history is a linear path (master's pointer moves towards merge point) one parent
+	RM will have two or multiple parents with a merge commit created and new commits to master
+3) git checkout BRANCH_NAME
+4) git branch -d BRANCH_NAME
+5) merge conflicts happen when you attempt to merge two points that both have overlapping pending changes on them
+	

@@ -1,0 +1,36 @@
+
+HTML REVIEW
+
+The <script> tag is used to - embed a client-side script (JavaScript).
+ - either contains scripting statements, or it points to an external script file through the src attribute.
+
+ What is the difference between a link tag and a anchor tag?
+  - The anchor element is used to link to another page or to a certain part of the page if you use its ID.
+  - And The link tag defines a link between a document and an external resource.
+
+ Why is it important to include an alt attribute inside of an img tag?
+  - If the user can for some reason not view the image (plethora of reasons) and for accessibility purposes
+
+ A form <label's> for element should correspond to the input's id to bind them together
+	<form>
+	  <label for="fname">First name:</label><br>
+	  <input type="text" id="fname" name="fname"><br>
+	  <label for="lname">Last name:</label><br>
+	  <input type="text" id="lname" name="lname">
+	</form>
+
+	importance of name attribute in html form
+	 - submitted inputs will not be sent without a name attribute
+
+	value attribute in html input:
+		- for button, resety, and submit - it defines the text on the button
+		- for text, password and hidden, it defines the default value of the input field
+		- for checkbox, radio, image - it defines the value associated with the input (the value sent on submit)
+
+
+JAVASCRIPT REVIEW
+
+convert number to string
+- var x = num.toString();
+string to number
+- var x = parseInt("str")
