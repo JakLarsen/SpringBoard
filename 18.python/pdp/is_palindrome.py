@@ -21,3 +21,9 @@ def is_palindrome(phrase):
         >>> is_palindrome('Noon')
         True
     """
+
+    return [char.lower() for char in phrase[::-1]] == [char.lower() for char in phrase]
+
+print(is_palindrome('tacocat'))
+print(is_palindrome('Noon'))
+print(is_palindrome('Robert'))
