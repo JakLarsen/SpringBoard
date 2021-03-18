@@ -3,9 +3,13 @@
 {% block content %}
 
     <form action="/story">
-
-        <input type="text" name ="">
-        <button>Create Story</button>
+        {% for word in story_words %}
+            <label for="{{word}}">{{word}}: </label>
+            <input type="text" id="{{word}}" name ="{{word}}">
+        </br>
+        </br>
+        {% endfor %}
+        <button id="create-story">Create Story</button>
     </form>
 
 {% endblock %}
