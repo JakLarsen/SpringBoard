@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect, flash
 from flask_debugtoolbar import DebugToolbarExtension
 
 from random import randint, choice, sample
@@ -10,8 +10,71 @@ app.debug = True
 
 # set a 'SECRET_KEY' to enable the Flask session cookies
 app.config['SECRET_KEY'] = 'coolbeans'
+app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 toolbar = DebugToolbarExtension(app)
+
+
+MOVIES = {'Gladiator', 'Chicken Run'}
+
+
+
+
+
+
+@app.route('/')
+def home_page():
+    """Shows Home Page"""
+    return render_template('home.html')
+
+@app.route('/old-home-page')
+def redirect_to_home():
+    """Redirects to new homepage"""
+    flash("That page has moved!")
+    return redirect('/')
+
+@app.route('/movies')
+def show_movies():
+    """Show list of all movies in fake db"""
+    return render_template("movies.html", movies = MOVIES)
+
+@app.route('/movies/new', methods=["POST"])
+def add_movie():
+    title = request.form['title']
+    if title in MOVIES:
+        flash("Movie already exists!", 'error')
+    else:
+        MOVIES.add(title)
+        flash("Movie has been added!", 'success')
+    return redirect('/movies')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @app.route('/hello')
 def say_hello():
@@ -25,6 +88,10 @@ def lucky():
     lucky_num = randint(1,10)
 
     return render_template("lucky.html",lucky_num = lucky_num, msg = "You are so lucky!")
+
+
+
+
 
 
 # GREET DEMO

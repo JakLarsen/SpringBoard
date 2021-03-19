@@ -34,9 +34,7 @@ class Story:
 
         return text
 
-
 # Here's a story to get you started
-
 
 story = Story(
     ["place", "noun", "verb", "adjective", "plural_noun"],

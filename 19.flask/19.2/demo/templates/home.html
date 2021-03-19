@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Learning</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+    <div id="body">
+
+        <div id="nav" class="navbar">
+            <a href="/">Home</a>
+            <a href="hello">Hello</a>
+            <a href="lucky">Lucky</a>
+            <a href="form">Form One</a>
+            <a href="form-2">Form Two</a>
+            <a href="movies">Movies</a>
+        </div>
+
+        <section id="messages">
+            {% for category, msg in get_flashed_messages(with_categories=true) %}
+                <p>{{category}} - {{msg}}</p>
+            {% endfor %}
+        </section>
+
+        {% block content %} {% endblock %}
+
+    </div>
+</body>
+</html>
+
+
+<!-- Working with CSS on flask apps seems super spotty
+- sometimes it updates everything I do
+- won't change a thing on the files and try to update css and it doesn't show.
+- Very confusing... 
+- I can change the css and it works in the VS Code live preview but not when running Flask...
+- HOW DO I MAKE THIS CONSISTENT?
+-->
