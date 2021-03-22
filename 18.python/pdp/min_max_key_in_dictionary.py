@@ -1,3 +1,6 @@
+first_response = True
+
+
 def min_max_keys(d):
     """Return tuple (min-keys, max-keys) in d.
 
@@ -9,3 +12,15 @@ def min_max_keys(d):
         >>> min_max_keys({"apple": "red", "cherry": "red", "berry": "blue"})
         ('apple', 'cherry')
     """
+
+
+
+def show_questions():
+	if first_response == True:
+		first_reponse = False
+		print('True', f'First_response is now: {first_reponse}')
+	else:
+		print('False')
+
+show_questions()
+

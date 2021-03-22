@@ -1,3 +1,9 @@
+class Response:
+
+    def __init__(self, isFirst = True, responses = []):
+        self.isFirst = isFirst
+        self.responses = responses
+
 class Question:
     """Question on a questionnaire."""
 
