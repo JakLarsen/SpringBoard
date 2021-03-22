@@ -1,0 +1,20 @@
+{% extends 'home.html' %}
+
+
+{% block content%}
+
+<form action ='/answer' method="POST">
+    <label type="text">{{question}}</label>
+    </br>       
+
+    {% for choice in choices %}
+        <label type="text">{{choice}}</label>
+        <input name="choice" type="radio" id="{{loop.index}}" value ="{{choice}}">
+        </br>
+    {% endfor %}
+
+    <button>Next</button>
+</form>
+
+
+{% endblock %}
