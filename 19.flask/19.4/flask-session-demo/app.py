@@ -154,6 +154,7 @@ def verify_secret_code():
         session["entered-pin"] = True
         return redirect("/secret-invite")
     else:
+        session["entered-pin"] = False
         return redirect("/login-form")
 
 

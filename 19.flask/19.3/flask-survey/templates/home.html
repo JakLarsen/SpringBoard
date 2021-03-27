@@ -15,7 +15,9 @@
         <div id="top-container">
             <h1>Survey: {{title}}</h1>
             <h2>Instructions: {{instructions}}</h2>
-            <a href="/start"><button id="start-btn">Start Survey</button></a>
+            <form action="/start" method="post">
+                <input type="submit" name="start" value="Start Survey"/>
+            </form>
         </div>
 
         {% with messages = get_flashed_messages(with_categories = true) %}
