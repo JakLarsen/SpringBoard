@@ -1,0 +1,24 @@
+{% extends 'home.html' %}
+
+
+
+{% block content %}
+
+    <div id="game-board">
+        {% for i in range(game_board|length) %}
+            <div id="row-container">
+                {% for j in range(game_board[i]|length) %}
+                    <span class="letter" id="{{i}}{{j}}">{{game_board[i][j]}}</span>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+    <div id="guess-form-container">
+        <form id="guess-form">
+            <input type="text" id="guess-input" name="guess" placeholder="Your Word">
+            <input type="submit" id="submit-btn">
+        </form>
+
+    </div>
+
+{% endblock %}
