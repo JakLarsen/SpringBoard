@@ -1,4 +1,4 @@
-def setUp(self):
+    def setUp(self):
         """Stuff to do before every test."""
 
         self.client = app.test_client()
