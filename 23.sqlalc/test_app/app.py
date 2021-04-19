@@ -15,8 +15,6 @@ debug = DebugToolbarExtension(app)
 
 connect_db(app)
 
-in_app = True
-
 @app.route('/')
 def home_page():
     """Shows home page"""
