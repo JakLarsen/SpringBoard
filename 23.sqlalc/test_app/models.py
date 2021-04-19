@@ -11,6 +11,20 @@ def connect_db(app):
 
 class Pet(db.Model):
 
+    @classmethod
+    def get_by_species(cls, species):
+        return cls.query.filter_by(species=species).all()
+
+    @classmethod
+    def get_hungry(cls):
+        return cls.query.filter(Pet.hunger >= 50).all()
+
+    def __repr__(self):
+        """ Show PET Info """
+
+        u = self
+        return f'<PET id: {u.id}; Name: {u.name}; Species: {u.species}; Hunger: {u.hunger}'
+
     __tablename__ = 'pets'
 
     id = db.Column(
@@ -32,4 +46,15 @@ class Pet(db.Model):
         nullable = False,
         default = 20
     )
+
+
+    def greet(self):
+        return f'{self.name}, says hi!'
+    
+    def feed(self, amount = 20):
+        """Update hunger based off out amount fed"""
+        
+        self.hunger -= amount
+        self.hunger = max(self.hunger, 0)
+
 

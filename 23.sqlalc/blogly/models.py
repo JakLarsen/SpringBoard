@@ -10,6 +10,17 @@ def connect_db(app):
 
 class User(db.Model):
 
+
+    @classmethod
+    def get_all_users(cls):
+        return User.query.all()
+
+    def __repr__(self):
+        """ Show User Info """
+
+        u = self
+        return f'<User id: {u.id}; FN: {u.first_name}; LN: {u.last_name}; IMG: {u.image_url}'
+
     __tablename__ = 'users'
 
     id = db.Column(
@@ -28,5 +39,6 @@ class User(db.Model):
     image_url = db.Column(
         db.String(500),
         nullable = True,
-        default = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fstackoverflow.com%2Fquestions%2F49917726%2Fretrieving-default-image-all-url-profile-picture-from-facebook-graph-api&psig=AOvVaw1vz-puhdp66825h6qNNAkp&ust=1618669682429000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKiNuc78gvACFQAAAAAdAAAAABAD"
+        default = " "
     )
+
