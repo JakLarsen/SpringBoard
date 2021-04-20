@@ -25,6 +25,7 @@ class Pet(db.Model):
         u = self
         return f'<PET id: {u.id}; Name: {u.name}; Species: {u.species}; Hunger: {u.hunger}'
 
+
     __tablename__ = 'pets'
 
     id = db.Column(
