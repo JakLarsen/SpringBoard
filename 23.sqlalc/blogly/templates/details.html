@@ -15,5 +15,16 @@
         <li>First Name: {{user.first_name}}</li>
         <li>Last Lame: {{user.last_name}}</li>
     </ul>
+
+    <h1>Posts</h1>
+    <ul>
+        {% for post in posts %}
+        <li><a href="/users/{{user.id}}/posts/{{post.id}}">{{post.title}}</a></li>
+        {% endfor %}
+    </ul>
+
+    <form action ='/users/{{user.id}}/add-post'>
+        <input type="submit" name="add-post" value="Add Post"/>
+    </form>
     <a href="/users">Back to Users</a>
 {% endblock %}

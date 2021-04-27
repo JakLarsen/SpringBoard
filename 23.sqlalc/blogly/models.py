@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from funcs import get_date_time
 
 
 db = SQLAlchemy()
@@ -41,4 +42,38 @@ class User(db.Model):
         nullable = True,
         default = " "
     )
+    
+    posts = db.relationship("Post", cascade = "all, delete")
 
+
+class Post(db.Model):
+    """ POST MODEL """
+
+    __tablename__ = 'posts'
+
+    @classmethod
+    def get_all_user_posts(cls, user_id):
+        return Post.query.filter_by(user_id = user_id)
+
+    id = db.Column(
+        db.Integer,
+        primary_key = True,
+        autoincrement = True
+    )
+    title = db.Column(
+        db.String(50),
+        default = 'Untitled'
+    )
+    content = db.Column(
+        db.String(250),
+        nullable = False
+    )
+    created_at = db.Column(
+        db.String(20),
+        default = get_date_time()
+    )
+    user_id = db.Column(
+        db.Integer,
+        db.ForeignKey('users.id') #'tablename.key_link'
+    )
+    

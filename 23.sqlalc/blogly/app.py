@@ -1,7 +1,8 @@
 from flask import Flask, request, render_template, redirect, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
 from flask_sqlalchemy import SQLAlchemy
-from models import db, connect_db, User
+from models import db, connect_db, User, Post
+from funcs import get_date_time
 
 app = Flask(__name__)
 
@@ -10,7 +11,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 
 app.config['SECRET_KEY'] = "wadawfnoawnfga"
-app.config['DEBUG_TB_INTERECEPT_REDIRECTS'] = False
+app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 debug = DebugToolbarExtension(app)
 
 connect_db(app)
@@ -32,8 +33,9 @@ def show_users():
 def show_user_details(user_id):
     """ Shows user details """
 
+    posts = Post.get_all_user_posts(user_id)
     user = User.query.get(user_id)
-    return render_template('details.html', user = user) 
+    return render_template('details.html', user = user, posts = posts) 
 
 @app.route('/users/new')
 def add_user_form():
@@ -92,9 +94,77 @@ def delete_user(user_id):
 
     return redirect('/users')
 
+@app.route('/users/<int:user_id>/add-post')
+def add_post_form(user_id):
+    """ BRINGS UP ADD POST FORM """
 
+    user = User.query.get(user_id)
 
+    return render_template('add_post.html', user = user)
 
+@app.route('/users/<int:user_id>/create-post', methods=['POST'])
+def create_post(user_id):
+    """ Submits a Post to database, redirects to the user page """
+    
+    title = request.form['title']
+    content = request.form['content']
 
+    new_post = Post(title = title, content = content, user_id = user_id)
 
+    db.session.add(new_post)
+    db.session.commit()
+
+    return redirect(f'/users/{user_id}')
+
+@app.route('/users/<int:user_id>/cancel')
+def return_to_user(user_id):
+    """Cancels add-post form, returns to user/<user_id>"""
+
+    return redirect(f'/users/{user_id}')
+
+@app.route('/users/<int:user_id>/posts/<int:post_id>')
+def show_post(user_id, post_id):
+    """ retrieves post based on user and post ids """
+
+    user = User.query.get(user_id)
+    post = Post.query.get(post_id)
+
+    return render_template('post.html', user = user, post = post )
+
+@app.route('/users/<int:user_id>/posts/<int:post_id>/delete', methods=['POST'])
+def delete_post(user_id, post_id):
+    """ deletes a post and redirects to user detail page """
+
+    post_to_delete = Post.query.get(post_id)
+    db.session.delete(post_to_delete)
+    db.session.commit()
+
+    return redirect(f'/users/{user_id}')
+
+@app.route('/users/<int:user_id>/posts/<int:post_id>/edit')
+def edit_post(user_id, post_id):
+    """ brings up edit form for a post """
+
+    user = User.query.get(user_id)
+    post = Post.query.get(post_id)
+
+    return render_template(f'edit_post.html', user = user, post = post)
+
+@app.route('/users/<int:user_id>/posts/<int:post_id>/commit-edit', methods = ['POST'])
+def commit_post_edit(user_id, post_id):
+    """ Commits a post edit and redirects to that updated post page """
+
+    title = request.form['title']
+    content = request.form['content']
+    created_at = get_date_time()
+
+    post = Post.query.get(post_id)
+    post.title = title
+    post.content = content
+    post.created_at = created_at
+
+    db.session.add(post)
+    db.session.commit()
+
+    return redirect(f'/users/{user_id}/posts/{post_id}')
 

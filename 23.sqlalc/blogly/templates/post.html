@@ -1,0 +1,17 @@
+{% extends 'home.html'%}
+
+{% block body %}
+    <h1>Post {{post.id}} by {{user.first_name}} {{user.last_name}}</h1>
+    <h2>Title: {{post.title}}</h2>
+    <h6>Created: {{post.created_at}}</h6>
+    <h3>{{post.content}}</h3>
+
+    <form action ="/users/{{user.id}}/posts/{{post.id}}/delete" method=POST>
+        <input type="submit" name="delete" value="Delete"/>
+    </form>
+    <form action ='/users/{{user.id}}/posts/{{post.id}}/edit'>
+        <input type="submit" name="edit" value="Edit"/>
+    </form>
+    
+    <a href="/users/{{user.id}}">Back to {{user.first_name}}'s Page</a>
+{% endblock %}

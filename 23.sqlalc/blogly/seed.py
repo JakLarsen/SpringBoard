@@ -1,4 +1,7 @@
-"""SEED FILE FOR USERS"""
+"""SEED FILE FOR USERS
+
+python seed.py to seed the database with .py file
+"""
 
 from models import User, db
 from app import app

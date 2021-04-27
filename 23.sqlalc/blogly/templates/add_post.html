@@ -1,0 +1,12 @@
+{% extends 'home.html'%}
+{% block body %}
+<h1>Add new post for {{user.first_name}} {{user.last_name}}</h1>
+<form action = '/users/{{user.id}}/create-post' method = POST>
+    <input type = "text" name ="title">
+    <input type = "text" name ="content">
+    <input type = "submit" name = "submit" value="Add">
+</form>
+<form action="/users/{{user.id}}/to-user">
+    <input type = "submit" name = "cancel" formaction="/users/{{user.id}}/cancel" value = "Cancel">
+</form>
+{% endblock %}
