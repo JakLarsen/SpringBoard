@@ -1,0 +1,11 @@
+{% extends 'home.html' %}
+
+{% block body %}
+    <form action = "/tag/{{tag.id}}/edit-commit" method = POST>
+        <input type = "text" name="name" placeholder = "Replace {{tag.name}}">
+        <input type = "submit" name = "name" value = "Save Tag">
+    </form>
+
+
+
+{% endblock %}

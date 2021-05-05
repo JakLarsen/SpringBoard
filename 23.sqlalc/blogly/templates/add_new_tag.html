@@ -1,0 +1,16 @@
+{% extends 'home.html'%}
+
+{% block body %}
+    <h1 id ="tags-title">Tags</h1>
+    <ul id ="tags-display">
+        {% for tag in tags %}
+        <li>{{tag.name}}</li>
+        {% endfor %}
+    </ul>
+
+    <form action="/users/post-tag" method=POST>
+        <input type="text" name = "name" placeholder="Tag Name">
+        <button>Add Tag</button>
+    </form>
+
+{% endblock %}

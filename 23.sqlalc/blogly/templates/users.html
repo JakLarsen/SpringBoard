@@ -9,5 +9,13 @@
     </ul>
     <button id="add-user-btn"><a href="/users/new">Add user</a></button>
 
+    <h1 id ="tags-title">Tags</h1>
+    <ul id ="tags-display">
+        {% for tag in tags %}
+            <li><a href="/tag/{{tag.id}}">{{tag.name}}</a></li>
+        {% endfor %}
+    </ul>
+    <button id="add-tag-btn"><a href="/users/new-tag">Add Tag</a></button>
+
 
 {% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'home.html' %}
+
+{% block body %}
+
+    <h1>Tag details for {{tag.name}}</h1>
+    <p>Things tagged with this are about {{tag.name}} topics!</p>
+
+    <form action ="/tag/{{tag.id}}/delete" method=POST>
+        <input type="submit" name="delete" value="Delete Tag"/>
+    </form>
+    <form action ='/tag/{{tag.id}}/edit'>
+        <input type="submit" name="edit" value="Edit Tag"/>
+    </form>
+
+    <h1>Posts with this tag: </h1>
+    <ul>
+        {% for post in posts %}
+            <li><a href="/users/{{post.user_id}}/posts/{{post.id}}">{{post.title}}</a></li>
+        {% endfor %}
+    </ul>
+
+
+    <a href="/users">Back to Main Page</a>
+
+{% endblock %}

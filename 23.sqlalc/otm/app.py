@@ -3,7 +3,7 @@
 from flask import Flask, request, render_template, redirect, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
 from flask_sqlalchemy import SQLAlchemy
-from models import db, connect_db, Department, Employee, get_directory
+from models import db, connect_db, Department, Employee, Project, EmployeeProject, get_directory, get_directory_join, get_directory_join_objects
 
 app = Flask(__name__)
 

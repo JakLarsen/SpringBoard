@@ -13,5 +13,13 @@
         <input type="submit" name="edit" value="Edit"/>
     </form>
     
+    <h1>Tags</h1>
+
+    {% for tag in tags %}
+
+        <li><a href="/tag/{{tag.id}}">{{tag.name}}</a></li>
+
+    {% endfor %}
+</br>    
     <a href="/users/{{user.id}}">Back to {{user.first_name}}'s Page</a>
 {% endblock %}
