@@ -1,0 +1,45 @@
+            /* Body */
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+                /* Main Container */
+#main-con{
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    background-color: aqua;
+    margin: 1rem;
+    padding: 1rem;
+}
+                    /* Nav Bar */
+#nav-con{
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: left;
+    align-items: flex-end;
+    background-color: red;
+    height: 3rem;
+    width: 100%;
+    /* padding: 1rem; */
+    font-weight: 500;
+    font-size: 1rem;
+}
+.nav-item{
+    padding: 0rem 0rem 0.5rem 0.5rem;
+    margin-right: 1rem;
+}
+                    /* Call To Action */
+
+#cta-con{
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    background-color: pink;
+    justify-content: center;
+    align-items: center;
+}                        
