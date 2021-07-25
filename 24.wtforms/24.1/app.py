@@ -2,6 +2,7 @@ from flask import Flask, request, render_template, redirect, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from models import db, connect_db, User
 from forms import AddSnackForm
+import sys
 
 app = Flask(__name__)
 
@@ -24,10 +25,16 @@ def add_snack():
 
     if form.validate_on_submit():
         #is this a post request AND csrf token is there
-        return redirect('/nope')
+        name = form.name.data
+        price = form.price.data
+        session['name'] = name
+        session['price'] = price
+        flash(f"New snack created. Name: {name}, price is ${price}")
+        return redirect('/')
     else:
         return render_template("add_snack_form.html", form = form)
 
-@app.route('/nope')
-def noty():
-    return render_template("noty.html")
+# @app.route('/yep')
+# def noty():
+#     name = session.get('name', None)
+#     return render_template("yep.html", name = name)

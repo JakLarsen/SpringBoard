@@ -8,7 +8,7 @@ from flask import Flask, request, render_template, redirect, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
 from flask_sqlalchemy import SQLAlchemy
 from models import db, connect_db, Department, Employee, Project, EmployeeProject, Snack, get_directory, get_directory_join, get_directory_join_objects
-from forms import AddSnackForm, NewEmployeeForm
+from forms import AddSnackForm, EmployeeForm
 
 app = Flask(__name__)
 
@@ -39,7 +39,6 @@ def add_snack():
         snack = Snack(name=name, price=price)
         db.session.add(snack)
         db.session.commit()
-        raise
         flash(f"New snack created. Name: {name}, price is ${price}")
         return redirect('/')
     else:
@@ -54,9 +53,12 @@ def list_phones():
 def add_employee():
     """New Employee Form"""
 
-    form = NewEmployeeForm()
+    form = EmployeeForm()
 
-    #Does not work as intended - the individual parts of the tuple work, but when sent over all of the option values and text displays are the full tuples instead of splitting the value to the department code and text to the name
+    #Does not work as intended - the individual parts of the tuple work, 
+    # but when sent over all of the option values and text displays are the full tuples 
+    # instead of splitting the value to the department code and text to the name
+
     # depts = db.session.query(Department.dept_code, Department.dept_name)
     # print("****************************************", flush= True)
     # print(depts[0], flush= True)
@@ -80,3 +82,19 @@ def add_employee():
         return redirect('/')
     else:
         return render_template('new_employee_form.html', form = form)
+
+
+@app.route("/employees/<int:id>/edit", methods=["GET", "POST"])
+def edit_exployee(id):
+
+    emp = Employee.query.get_or_404(id)
+    form = EmployeeForm(obj = emp)
+
+    if form.validate_on_submit():
+        emp.name = form.name.data
+        emp.state = form.state.data
+        emp.dept_code = form.dept_code.data
+        db.session.commit()
+        return redirect('/phones')
+    else:
+        return render_template("edit_employee_form.html", form = form)

@@ -17,7 +17,7 @@
         <tbody>
             {% for emp in emps %}
             <tr>
-                <td>{{emp.name}}</td>
+                <td>{{emp.name}}<a href="/employees/{{emp.id}}/edit">edit</a></td>
                 <td>{{emp.dept.dept_name}}</td>
                     {% if emp.dept.phone %}
                         <td>{{emp.dept.phone}}</td>
