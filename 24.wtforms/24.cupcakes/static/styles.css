@@ -1,0 +1,14 @@
+#cupcake-con{
+    position: relative;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.cupcake{
+    position: relative;
+}
+
+.cupcake-img{
+    position: relative;
+    max-width: 15rem;
+}
