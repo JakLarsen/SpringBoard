@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>You made it, {{user.username}}!</h1>
+<a href="/logout">Logout</a>
+<a href='/users/{{user.username}}/delete'>Delete Account</a>
+
+<h1>Your info:</h1>
+<h6>Username:</h6><span>{{user.username}}</span>
+<h6>First name:</h6><span>{{user.first_name}}</span>
+<h6>Last name:</h6><span>{{user.last_name}}</span>
+<h6>Email:</h6><span>{{user.email}}</span>
+
+<h6><a href="/users/{{user.username}}/feedback/add">Add Feedback </a></h6>
+
+{% for post in feedback %}
+    <h1>Title: {{post.title}}</h1>
+    <form action="/feedback/{{post.id}}/delete" method="POST">
+        <input type="submit" value="X"/>
+    </form>
+    <h3>{{post.content}}</h3>
+    <a href="/feedback/{{post.id}}/update">Edit</a>
+{% endfor %}
+
+{% endblock %}

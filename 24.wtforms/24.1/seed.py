@@ -18,5 +18,5 @@ molly = User (first_name = "Molly", last_name = "Larsen")
 sdeven = User (first_name = "Sdeven", last_name = "Sdephensen")
 bob = User (first_name = "Bob", last_name = "Bobertson")
 
-db.session.add_all([jake, molly, sdeven, bob])
+db.session.add_all([jake_larsen, molly, sdeven, bob])
 db.session.commit()
