@@ -1,7 +1,6 @@
 const express = require('express')
-
 const app = express()
-
+app.use(express.json())
 
 
 
@@ -48,6 +47,24 @@ app.get('/search', (req, res)=>{
     const {term = 'default', sort = 'default'} = req.query
     return res.send(`Search page: Term is: ${term}. Sort is: ${sort}`)
 })
+
+app.get('/show-my-headers', (req, res)=>{
+    console.log(req.rawHeaders)
+    console.log(req.headers)
+    res.send(req.headers)
+})
+
+app.get('/show-my-langauge', (req,res)=>{
+    const lang= req.headers['accept-language']
+    res.send(`Your language mpreference is: ${lang}`)
+})
+
+app.post('/register', (req, res)=>{
+    res.send(req.body.username);
+})
+
+
+
 
 app.listen(5000, ()=>{
     console.log('Listening on port LH 5000')
