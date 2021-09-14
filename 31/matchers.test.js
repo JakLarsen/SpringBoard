@@ -22,7 +22,6 @@ describe ('test matchers', function(){
     test('numeric matchers', function(){
         expect(7).toBeGreaterThan(2)
     })
-
     test('any', function(){
         const randNum =  Math.random() * 6
         expect(randNum).toEqual(expect.any(Number))
@@ -35,3 +34,10 @@ describe ('test matchers', function(){
     })
 
 })
+
+// beforeAll(fucntion(){
+
+// })
+// beforeEach
+// afterEach
+// afterAll
