@@ -1,4 +1,5 @@
 const express = require('express')
+const ExpressError = require('./expressError')
 
 const app = express()
 app.use(express.json())
@@ -19,10 +20,20 @@ app.get('/candies', (req, res)=>{
 
 app.post('/candies', (req,res)=>{
     if(req.body.name.toLowerCase() == "circus peanuts"){
-        res.status(403).json({msg: "Horrible choice. Forbidden."})
+        throw new ExpressError("WE HATE THOSE", 403)
     }
+
     CANDIES.push(req.body)
     res.status(201).json(CANDIES)
+})
+
+app.get('/secret', (req,res)=>{
+    if (req.query.password != "coolbeans"){
+        throw new ExpressError("Invalid Password", 403)
+    }
+    else{
+        return res.json("You know password things!")
+    }
 })
 
 
