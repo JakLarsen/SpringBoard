@@ -12,20 +12,6 @@ app.use("/users", userRoutes)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //If nothing else runs, generic 404
 app.use((req,res,next)=>{
     const e = new ExpressError("Page not found", 404)
@@ -36,8 +22,9 @@ app.use((req,res,next)=>{
 app.use((error, req, res, next)=>{
     let status = error.status || 500
     let msg =  error.msg
-    res.send(`OH NO AN ERROR: ${msg}, ${status}, ${error.stack}`)
+    res.status(status).send({error: {msg: msg, status: status}})
 })
+
 
 
 module.exports = app
