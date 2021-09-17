@@ -14,7 +14,7 @@ router.get('/', async function(req, res, next){
         return res.status(200).json({companies: results.rows})
     }
     catch(e){
-        next(e)
+        return next(e)
     } 
 })
 router.get('/:code', async function(req, res, next){
@@ -29,7 +29,7 @@ router.get('/:code', async function(req, res, next){
         return res.status(200).json({companies: results.rows})
     }
     catch(e){
-        next(e)
+        return next(e)
     } 
 })
 router.post('/', async (req, res, next)=>{
@@ -42,7 +42,7 @@ router.post('/', async (req, res, next)=>{
         return res.status(201).json({company: results.rows[0]})
     }
     catch(e){
-        next(e)
+        return next(e)
     }
 })
 
