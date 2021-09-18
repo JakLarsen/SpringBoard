@@ -11,14 +11,14 @@ const db = require('../db')
 
 
 let testInvoice;
-let testCompany
+let testCompany2;
 beforeEach(async ()=>{
     const compResult = await db.query(
-        `insert into companies (code, name, description) values ('test', 'test_company', 'a_test')
+        `insert into companies (code, name, description) values ('test2', 'test_company2', 'a_test2')
         returning code, name, description`
     )
     const invResult = await db.query(
-        `insert into invoices (comp_code, amt) values ('test', '150')
+        `insert into invoices (comp_code, amt) values ('test2', '150')
         returning id, comp_code, amt, paid, add_date, paid_date`
     )
     testInvoice = invResult.rows[0]
