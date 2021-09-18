@@ -46,12 +46,32 @@ router.post('/', async (req, res, next)=>{
     }
 })
 router.patch('/:id', async (req,res,next)=>{
+    const {amt, paid} = req.body
     try{
         const {id} = req.params
-        const {amt} = req.body
+        const invoiceRes = await db.query(
+            `select paid, paid_date from invoices where id=$1`, [id]
+        )
+        let date = new Date()
+        //IF PAYING AN UNPAID INVOICE
+        if(invoiceRes.rows[0].paid == false){
+            if (paid == true){
+                const updatePaidDate = db.query(
+                    `UPDATE invoices SET paid_date=$1 where id=$2`, [date, id]
+                )
+            }
+        }
+        //IF UNPAYING AN  ALREADY PAID INVOICE
+        else{
+            if (paid == false){
+                const updatePaidDate = db.query(
+                    `UPDATE invoices SET paid_date=$1 where id=$2`, [null, id]
+                )
+            }
+        }
         const results = await db.query(
-            `UPDATE invoices SET amt=$2 WHERE id=$1 
-            RETURNING id, comp_code, amt, paid, add_date, paid_date`, [id, amt]
+            `UPDATE invoices SET amt=$2, paid=$3 WHERE id=$1 
+            RETURNING id, comp_code, amt, paid, add_date, paid_date`, [id, amt, paid]
         )
         if (results.rows.length == 0){
             throw new ExpressError("Invoice id not found", 404)
