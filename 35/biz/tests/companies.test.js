@@ -69,6 +69,10 @@ describe("PATCH /companies/:code", function(){
         const res = await request(app).patch(`/companies/${testCompany.code}`).send(newInfo)
         expect(res.statusCode).toBe(200)
     })
+    test("Expect 404 if company code doesn't exist", async function(){
+        const res = await request(app).patch(`/companies/1700zebras`)
+        expect(res.statusCode).toBe(404)
+    })
 })
 describe("DELETE /companies/:code", function(){
     test("Delete a company by code", async function(){

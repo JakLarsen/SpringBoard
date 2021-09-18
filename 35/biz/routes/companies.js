@@ -3,6 +3,7 @@ const ExpressError = require('../expressError')
 const router = new express.Router()
 const db = require('../db')
 const app = require('../app')
+const slugify = require('slugify')
 
 
 
@@ -33,11 +34,12 @@ router.get('/:code', async function(req, res, next){
     } 
 })
 router.post('/', async (req, res, next)=>{
-    const {code, name, description} = req.body
+    const {name, description} = req.body
+    let slugcode = slugify(name).toLowerCase()
     try{
         const results = await db.query(
             `insert into companies (code, name, description) values ($1, $2, $3) 
-            returning code, name, description`, [code, name, description]
+            returning code, name, description`, [slugcode, name, description]
         )
         return res.status(201).json({company: results.rows[0]})
     }
@@ -68,7 +70,7 @@ router.delete('/:code', async (req,res,next)=>{
             `delete from companies where code=$1`, [code]
         )
         return res.send({msg : "DELETED!" })
-    }
+        }
     catch(e){
         return next(e)
     }
