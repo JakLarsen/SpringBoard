@@ -8,15 +8,8 @@ const companies = require('./routes/companies')
 app.use("/companies", companies)
 const invoices = require('./routes/invoices')
 app.use('/invoices', invoices)
-
-
-
-
-
-
-
-
-
+const industries = require('./routes/industries')
+app.use('/industries', industries)
 
 //If nothing else runs, generic 404
 app.use((req,res,next)=>{
@@ -27,7 +20,7 @@ app.use((req,res,next)=>{
 //Otherwise we use an error handler
 app.use((error, req, res, next)=>{
     let status = error.status || 500
-    let msg =  error.msg
+    let msg =  error.message
     res.status(status).send({error: {msg: msg, status: status}})
 })
 
