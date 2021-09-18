@@ -45,7 +45,6 @@ router.post('/', async (req, res, next)=>{
         return next(e)
     }
 })
-
 router.patch('/:code', async (req,res,next)=>{
     try{
         const {code} = req.params
@@ -62,7 +61,6 @@ router.patch('/:code', async (req,res,next)=>{
         return next(e)
     }
 })
-
 router.delete('/:code', async (req,res,next)=>{
     try{
         const {code} = req.params
