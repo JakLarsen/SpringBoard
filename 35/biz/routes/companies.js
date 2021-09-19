@@ -4,44 +4,32 @@ const router = new express.Router()
 const db = require('../db')
 const app = require('../app')
 const slugify = require('slugify')
+const Company = require('../models/companies')
 
 
 
-router.get('/', async function(req, res, next){
+
+router.get('/', async function(req,res,next){
     try{
-        const results = await db.query(
-                'select * from companies'
-            )
-        return res.status(200).json({companies: results.rows})
+        const results = await Company.getAll()
+        return res.status(200).json({companies: results})
     }
     catch(e){
         return next(e)
-    } 
+    }
 })
 
-//NEED TO RETURN LIST OF INDUSTRIES  {company : {'name': 'apple', industries: ['tech','beau']}
 router.get('/:code', async function(req, res, next){
     const {code} = req.params
     try{
-        const result = await db.query(
-            `SELECT c.code, c.name, c.description, i.code
-                FROM companies as c
-                    LEFT JOIN companies_industries as ci
-                        ON c.code = ci.company_code
-                    LEFT JOIN industries AS i ON ci.industry_code = i.code
-                WHERE c.code=$1`, [code] 
-        )
-        const {name, description} = result.rows[0]
-        let industries = result.rows.map(r=> r.code)
-        if (result.rows.length == 0){
-            throw new ExpressError('Company code not found.', 404)
-        }
-        return res.json({company: {code: code, name: name, description: description, industries: industries}})
+        const result = await Company.getByCode(code)
+        return res.json({company: result})
     }
     catch(e){
         return next(e)
     } 
 })
+
 router.post('/', async (req, res, next)=>{
     const {name, description} = req.body
     let slugcode = slugify(name).toLowerCase()
@@ -84,6 +72,9 @@ router.delete('/:code', async (req,res,next)=>{
         return next(e)
     }
 })
+
+
+
 
 
 
