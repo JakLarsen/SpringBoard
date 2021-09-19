@@ -30,7 +30,6 @@ class Customer {
   }
 
   /** get a customer by ID. */
-
   static async get(id) {
     const results = await db.query(
       `SELECT id, 
@@ -54,13 +53,11 @@ class Customer {
   }
 
   /** get all reservations for this customer. */
-
   async getReservations() {
     return await Reservation.getReservationsForCustomer(this.id);
   }
 
   /** save this customer. */
-
   async save() {
     if (this.id === undefined) {
       const result = await db.query(

@@ -8,7 +8,6 @@ const Reservation = require("./models/reservation");
 const router = new express.Router();
 
 /** Homepage: show list of customers. */
-
 router.get("/", async function(req, res, next) {
   try {
     const customers = await Customer.all();
@@ -19,7 +18,6 @@ router.get("/", async function(req, res, next) {
 });
 
 /** Form to add a new customer. */
-
 router.get("/add/", async function(req, res, next) {
   try {
     return res.render("customer_new_form.html");
@@ -29,7 +27,6 @@ router.get("/add/", async function(req, res, next) {
 });
 
 /** Handle adding a new customer. */
-
 router.post("/add/", async function(req, res, next) {
   try {
     const firstName = req.body.firstName;
@@ -47,7 +44,6 @@ router.post("/add/", async function(req, res, next) {
 });
 
 /** Show a customer, given their ID. */
-
 router.get("/:id/", async function(req, res, next) {
   try {
     const customer = await Customer.get(req.params.id);
@@ -61,7 +57,6 @@ router.get("/:id/", async function(req, res, next) {
 });
 
 /** Show form to edit a customer. */
-
 router.get("/:id/edit/", async function(req, res, next) {
   try {
     const customer = await Customer.get(req.params.id);
@@ -73,7 +68,6 @@ router.get("/:id/edit/", async function(req, res, next) {
 });
 
 /** Handle editing a customer. */
-
 router.post("/:id/edit/", async function(req, res, next) {
   try {
     const customer = await Customer.get(req.params.id);
@@ -90,7 +84,6 @@ router.post("/:id/edit/", async function(req, res, next) {
 });
 
 /** Handle adding a new reservation. */
-
 router.post("/:id/add-reservation/", async function(req, res, next) {
   try {
     const customerId = req.params.id;
