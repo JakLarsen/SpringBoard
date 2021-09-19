@@ -1,9 +1,5 @@
 const express = require('express')
 const ExpressError = require('./expressError')
-const middleware = require('./middleware.js')
-const userRoutes = require('./userRoutes')
-const morgan = require('morgan')
-
 const app = express()
 
 
@@ -13,9 +9,7 @@ const app = express()
 
 
 app.use(express.json())
-app.use(morgan('dev'))
-app.use('/users', userRoutes)
-
+app.use('/items', itemRoutes)
 
 
                     //HELPER ROUTES
@@ -32,12 +26,10 @@ app.get('/favicon.ico', (req,res)=>{
 
 
 
-app.get('/secret', middleware.checkForPassword, (req, res, next)=>{
-    return res.send("Cool secretttttt")
+app.get('/', (req,res)=>{
+    res.send('Home Page')
 })
-app.get('/private', middleware.checkForPassword, (req, res, next)=>{
-    return res.send("Cool ZONE")
-})
+
 
 
 
@@ -55,7 +47,8 @@ app.use((req,res,next)=>{
 app.use((error, req, res, next)=>{
     let status = error.status || 500
     let msg =  error.msg
-    res.send(`ERROR: ${msg}, ${status}, ${error.stack}`)
+    console.log(status)
+    res.status(status).send(`ERROR: ${msg}, ${status}, ${error.stack}`)
 })
 
 
