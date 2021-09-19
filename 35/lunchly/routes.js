@@ -1,11 +1,21 @@
-/** Routes for Lunchly */
+          /** Routes for Lunchly */
+
+
+
+          // IMPORTS
+
+
 
 const express = require("express");
-
 const Customer = require("./models/customer");
 const Reservation = require("./models/reservation");
-
 const router = new express.Router();
+
+
+
+          // MAIN VIEW HANDLERS
+
+
 
 /** Homepage: show list of customers. */
 router.get("/", async function(req, res, next) {
