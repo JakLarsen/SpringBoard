@@ -75,6 +75,14 @@ class Customer {
       );
     }
   }
+
+  getFullName(){
+    let fullName = `${this.firstName} ${this.lastName}`
+    console.log(fullName)
+    return fullName
+  }
+
+
 }
 
 module.exports = Customer;
