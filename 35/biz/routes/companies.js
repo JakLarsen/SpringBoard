@@ -22,8 +22,8 @@ router.get('/', async function(req,res,next){
 router.get('/:code', async function(req, res, next){
     const {code} = req.params
     try{
-        const result = await Company.getByCode(code)
-        return res.json({company: result})
+        const results = await Company.getByCode(code)
+        return res.json({company: results})
     }
     catch(e){
         return next(e)
@@ -31,19 +31,15 @@ router.get('/:code', async function(req, res, next){
 })
 
 router.post('/', async (req, res, next)=>{
-    const {name, description} = req.body
-    let slugcode = slugify(name).toLowerCase()
     try{
-        const results = await db.query(
-            `insert into companies (code, name, description) values ($1, $2, $3) 
-            returning code, name, description`, [slugcode, name, description]
-        )
-        return res.status(201).json({company: results.rows[0]})
+        const results = await Company.create(req)
+        return res.status(201).json({company: results})
     }
     catch(e){
         return next(e)
     }
 })
+
 router.patch('/:code', async (req,res,next)=>{
     try{
         const {code} = req.params
@@ -52,7 +48,7 @@ router.patch('/:code', async (req,res,next)=>{
             `UPDATE companies SET name=$2, description=$3 WHERE code=$1 RETURNING code, name, description`, [code, name, description ]
         )
         if (results.rows.length == 0){
-            throw new ExpressError("Company code not found", 404)
+            throw new ExpressError('Company code not found.', 404)
         }
         return res.status(200).send({company: results.rows[0]})
     }
@@ -60,13 +56,12 @@ router.patch('/:code', async (req,res,next)=>{
         return next(e)
     }
 })
+
 router.delete('/:code', async (req,res,next)=>{
     try{
         const {code} = req.params
-        const results = await db.query(
-            `delete from companies where code=$1`, [code]
-        )
-        return res.send({msg : "DELETED!" })
+        const results = await Company.delete(code)
+        return res.send({msg : results})
         }
     catch(e){
         return next(e)

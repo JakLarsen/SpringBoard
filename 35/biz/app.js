@@ -20,7 +20,7 @@ app.use((req,res,next)=>{
 //Otherwise we use an error handler
 app.use((error, req, res, next)=>{
     let status = error.status || 500
-    let msg =  error.message
+    let msg =  error.msg
     res.status(status).send({error: {msg: msg, status: status}})
 })
 
