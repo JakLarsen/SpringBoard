@@ -41,13 +41,55 @@ class Ccompany{
             }
             const {name, description} = results.rows[0]
             let industries = results.rows.map(r=> r.code)
-            let ourCompany2 = new Ccompany (code, name, description, industries)
-            return ourCompany2
+            let ourCompany = new Ccompany (code, name, description, industries)
+            return ourCompany
         }
         catch(e){
             return next(e)
         }
     }
+    static async create(req){
+        try{       
+            if(req.body.name == undefined || req.body.description == undefined){
+                throw new ExpressError("Name or Description not defined", 400)
+            }
+            const {name, description} = req.body
+            let code = slugify(name).toLowerCase()
+            const results = await db.query(
+                `INSERT INTO companies (code, name, description) 
+                VALUES ($1, $2, $3) 
+                RETURNING code, name, description`, 
+                [code, name, description]
+            )  
+            let ourCompany = new Ccompany (code, name, description)
+            return ourCompany
+        }
+        catch(e){
+            return next(e)
+        }
+        
+    }
+
+    async remove(){
+        await db.query(
+            `DELETE FROM companies
+            WHERE code=$1`,
+            [this.code]
+        )
+    }
+
+    async save(){
+        await db.query(
+            `UPDATE companies
+            SET name=$2, description=$3
+            WHERE code=$1`, 
+            [this.code, this.name, this.description]
+        )  
+    }
+
+
+
+
 }
 
 
