@@ -49,3 +49,10 @@ DLL - YES all 4 inserts and removals from both sides are O1
 - Or unsorted and find prio item each time (Sort each retrieval???)
 - Array = NO
 - DLL = NO
+
+#COMMON USE CASES FOR RECURSION
+- File System Traversals
+- Fractal Patterns
+- Parsing Mathmatical Expression (unknown layers of nested data) (e.g. 1*(2+3*(4+5+6)+7))
+- Other examples of nested data of unknown layers (HTML, recreating querySelector, etc)
+
