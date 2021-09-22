@@ -1,0 +1,51 @@
+#Stacks and Queues
+
+
+
+#It's O(n) to remove from beginning of an array normally
+#Can't reorder a stack or queue
+#Can't insert at any position, only one side
+#But the tradeoff is constant time to add or remove, whereas arrays have O(n) idx 0 removal or insertion but constant time indexing, etc.
+
+
+
+#QUEUE - AN ABSTRACT LINEAR DATA STRUCTURE
+
+FIFO, add to end (enqueueing), remove from the front (dequeueing)
+methods (enqueue(), dequeue(), isEmpty(), peek())
+Queue is just an ABSTRACT DATA TYPE, which means:
+--You could implement with an array, linked list, doubly LL, objects different types
+--However, the time complexity is better with certain structures
+LL and DLL are both fine choices for implementing a queue O1 enqueue and dequeue
+
+
+
+#STACKS - AN ABSTRACT DATA STRUCTURE
+
+LIFO, add to end(push), remove from end(pop)
+push(item), pop(), peek(), isEmpty()
+Array is fine O1 push and pop, so would work fine for push and pop
+LL is fine as well O1 push and pop but need to do so from the head O1 not tail
+DLL is good as well O1 push and pop from head or tail constant time
+
+
+
+#DEQUES - DOUBLE ENDED QUEUE, AN ABSTRACT DATA STRUCTURE
+
+insert and remove beginning or end
+appendleft(), appendright, popleft, popright, peekleft, peekright, isEmpty
+Array - not good On
+LL - not good On removal from other end
+DLL - YES all 4 inserts and removals from both sides are O1
+
+
+
+#PRIORITY QUEUE 
+
+- Add item with PRIORITY
+- Remove item with highest priority
+- add(pri, item), popPrio, peek, isEmpty
+- Can either sort every add and can remove first
+- Or unsorted and find prio item each time (Sort each retrieval???)
+- Array = NO
+- DLL = NO
