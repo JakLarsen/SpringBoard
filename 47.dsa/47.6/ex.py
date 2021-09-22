@@ -41,12 +41,22 @@ def isPalindrome(aStr, i=0):
 print(isPalindrome("tacocat"))  #// true
 print(isPalindrome("tacodog"))  #// false
 
+animals = ["duck", "cat", "pony"]
+def findIndex(aLi, val, i = 0):
+    #BASE CASE: NOT FOUND
+    if i == len(aLi): return -1
+    #BASE CASE: FOUND
+    if aLi[i] == val: return i
+    return findIndex(aLi, val, i+1)
+print(findIndex(animals, "cat"))
+print(findIndex(animals, "duck"))
+print(findIndex(animals, "pork"))
 
-# /let animals = ["duck", "cat", "pony"];
-# findIndex(animals, "cat");  // 1
-# findIndex(animals, "porcupine");   // -1
+
+
 
 # revString("porcupine") // 'enipucrop'
+
 
 
 #  let nestedObj = {
