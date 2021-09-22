@@ -30,9 +30,16 @@ print(every_other("hell"))
 print(every_other(""))
 print(every_other("I"))
 
-
-# isPalindrome("tacocat")  // true
-# isPalindrome("tacodog")  // false
+def isPalindrome(aStr, i=0):
+    #Compare outer letters
+    isTrue = (aStr[i] == aStr[len(aStr)-i-1])
+    #if outer letters aren't the same, return immediately
+    if isTrue == False: return False
+    #If i is middle or one before for odds (doesn't change last letter's symmetry)
+    if i == (len(aStr)//2): return isTrue
+    return isPalindrome(aStr, i + 1)
+print(isPalindrome("tacocat"))  #// true
+print(isPalindrome("tacodog"))  #// false
 
 
 # /let animals = ["duck", "cat", "pony"];
