@@ -9,6 +9,7 @@ const express = require('express');
 const { ensureLoggedIn, ensureToOrFromUser, ensureToUser } = require('../middleware/auth');
 const router = new express.Router();
 const Message = require('../models/message')
+const ExpressError = require('../expressError')
 
 
 

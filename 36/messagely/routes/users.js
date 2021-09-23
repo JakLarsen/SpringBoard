@@ -43,6 +43,20 @@ router.get('/:username', async function (req,res,next){
     }
 })
 
+//GET messages TO AND FROM username
+router.get('/:username/messages', async function(req,res,next){
+    try{
+        const {username} = req.params
+        const toUserMessages = await User.messagesTo(username)
+        const fromUserMessages = await User.messagesFrom(username)
+        return res.json({user: username, fromUserMessages, toUserMessages})
+    }
+    catch(e){
+        return next(e)
+    }
+})
+
+//SECRET ROUTE
 router.get('/secret', ensureLoggedIn, async function(req,res,next){
     try{
         return res.json('TOP SECRZET PUYRPLE SECRZET')
@@ -55,25 +69,3 @@ router.get('/secret', ensureLoggedIn, async function(req,res,next){
 
 
 module.exports = router
-
-
-/** GET /:username/to - get messages to user
- *
- * => {messages: [{id,
- *                 body,
- *                 sent_at,
- *                 read_at,
- *                 from_user: {username, first_name, last_name, phone}}, ...]}
- *
- **/
-
-
-/** GET /:username/from - get messages from user
- *
- * => {messages: [{id,
- *                 body,
- *                 sent_at,
- *                 read_at,
- *                 to_user: {username, first_name, last_name, phone}}, ...]}
- *
- **/

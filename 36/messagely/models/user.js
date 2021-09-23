@@ -149,7 +149,16 @@ class User {
    *   {username, first_name, last_name, phone}
    */
 
-  static async messagesFrom(username) { }
+   static async messagesFrom(username) {
+    const result = await client.query(
+        `SELECT messages.id, messages.from_username, messages.body
+        FROM users
+        INNER JOIN messages ON users.username=messages.from_username
+        WHERE users.username = $1`,
+        [username])
+    let messagesFrom = result.rows;
+    return messagesFrom
+  }
 
   /** Return messages to this user.
    *
@@ -159,7 +168,16 @@ class User {
    *   {id, first_name, last_name, phone}
    */
 
-  static async messagesTo(username) { }
+  static async messagesTo(username) {
+    const result = await client.query(
+      `SELECT messages.id, messages.to_username, messages.body
+      FROM users
+      INNER JOIN messages ON users.username=messages.to_username
+      WHERE users.username = $1`,
+      [username])
+    let messagesTo = result.rows;
+    return messagesTo
+   }
 }
 
 
