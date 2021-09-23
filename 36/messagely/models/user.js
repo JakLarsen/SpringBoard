@@ -1,6 +1,8 @@
 /** User class for message.ly */
-
+const ExpressError = require('../expressError')
 const client = require('../db')
+const bcrypt = require('bcrypt')
+const { BCRYPT_WORK_FACTOR, SECRET_KEY } = require("../config");
 
 
 
@@ -13,7 +15,31 @@ class User {
    *    {username, password, first_name, last_name, phone}
    */
 
-  static async register({username, password, first_name, last_name, phone}) { }
+  static async register({username, password, first_name, last_name, phone}, next) {
+    try {
+      if (!username || !password || !first_name || !last_name || !phone) {
+        throw new ExpressError("Username, password, first name, last name, and phone required", 400);
+      }
+      // hash password
+      const hashedPassword = await bcrypt.hash(password, BCRYPT_WORK_FACTOR);
+      const join_at =  new Date();
+      console.log(join_at)
+      // save to db
+      const results = await client.query(`
+        INSERT INTO users (username, password, first_name, last_name, phone, join_at, last_login_at)
+        VALUES ($1, $2, $3, $4, $5, $6, $7)
+        RETURNING username, first_name, last_name, phone`,
+        [username, hashedPassword, first_name, last_name, phone, join_at, join_at]);
+      return results.rows
+    } 
+    catch (e) {
+      return next(e)
+    }
+  }
+
+
+
+
 
   /** Authenticate: is this username/password valid? Returns boolean. */
 
@@ -36,7 +62,7 @@ class User {
       return users.rows
     }
     catch(e){
-      next(e)
+      return next(e)
     }
   }
 
