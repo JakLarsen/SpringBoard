@@ -52,6 +52,7 @@ class Message {
    */
 
   static async get(id) {
+    console.log(id)
     const result = await db.query(
         `SELECT m.id,
                 m.from_username,

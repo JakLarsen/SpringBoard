@@ -1,3 +1,11 @@
+
+
+
+                    //AUTHORIZATION ROUTES
+                    // - HANDLE ERRORS
+
+
+
 const express = require("express");
 const router = new express.Router();
 const bcryp = require('bcrypt')
@@ -7,39 +15,30 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { BCRYPT_WORK_FACTOR, SECRET_KEY } = require("../config");
 const User = require("../models/user");
-// const { ensureLoggedIn, ensureAdmin } = require("../middleware/auth");
 
 
-/** POST /login - login: {username, password} => {token}
- *
- * Make sure to update their last-login!
- *
- **/
-
-
-/** POST /register - register user: registers, logs in, and returns token.
- *
- * {username, password, first_name, last_name, phone} => {token}.
- *
- *  Make sure to update their last-login!
- */
-
-router.get('/', async(req, res, next) =>{
-    res.json('You hit Auth route')
-})
 
 router.post('/register', async (req, res, next) => {
     try{
         const { username, password, first_name, last_name, phone } = req.body;
+        //REGISTER USER
         const userObj = {username: username, password: password, first_name: first_name, last_name: last_name, phone: phone}
         const user = await User.register(userObj, next)
-        return res.status(201).json({user: user})
+        //LOGIN USER
+        const loginResults = await User.login(username, password)
+        return res.status(201).json({user: user, loginResults: loginResults})
     }
     catch(e){
         next(e)
     }
-
 });
+
+router.post('/login', async (req, res, next) =>{
+    const {username, password} = req.body
+    const loginResults = await User.login(username, password)
+    const lastLogin = await User.updateLoginTimestamp(username)
+    return res.json({loginResults: loginResults, lastLogin: lastLogin})
+})
 
 
 

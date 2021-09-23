@@ -2,6 +2,7 @@
 
 const jwt = require("jsonwebtoken");
 const { SECRET_KEY } = require("../config");
+const ExpressError = require("../expressError");
 
 /** Middleware: Authenticate user. */
 
@@ -10,6 +11,7 @@ function authenticateJWT(req, res, next) {
     const tokenFromBody = req.body._token;
     const payload = jwt.verify(tokenFromBody, SECRET_KEY);
     req.user = payload; // create a current user
+    console.log('You have a valid token!')
     return next();
   } catch (err) {
     return next();
@@ -40,10 +42,39 @@ function ensureCorrectUser(req, res, next) {
     return next({ status: 401, message: "Unauthorized" });
   }
 }
+
+function ensureToOrFromUser(req, toUser, fromUser){
+  try {
+    if (req.user.username === toUser || req.user.username === fromUser) {
+      return true
+    } else {
+      throw new ExpressError("Unauthorized", 401)
+    }
+  } catch (err) {
+    // errors would happen here if we made a request and req.user is undefined
+    throw new ExpressError("Unauthorized", 401)
+  }
+}
+
+function ensureToUser(req, toUser){
+  try {
+    if (req.user.username === toUser) {
+      return true
+    } else {
+      throw new ExpressError("Unauthorized", 401)
+    }
+  } catch (err) {
+    // errors would happen here if we made a request and req.user is undefined
+    throw new ExpressError("Unauthorized", 401)
+  }
+}
+  
 // end
 
 module.exports = {
   authenticateJWT,
   ensureLoggedIn,
-  ensureCorrectUser
+  ensureCorrectUser,
+  ensureToOrFromUser,
+  ensureToUser
 };
