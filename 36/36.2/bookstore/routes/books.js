@@ -11,8 +11,8 @@ const router = new express.Router();
 
 router.get("/", async function (req, res, next) {
   try {
-    const books = await Book.findAll(req.query);
-    return res.json({ books });
+    const bookLi = await Book.findAll(req.query);
+    return res.json({"books" : bookLi});
   } catch (err) {
     return next(err);
   }
