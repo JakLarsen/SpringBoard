@@ -47,7 +47,7 @@ class Company {
   /** Find all companies.
    *
    * Returns [{ handle, name, description, numEmployees, logoUrl }, ...]
-   * */
+   **/
 
   static async findAll() {
     const companiesRes = await db.query(
@@ -59,6 +59,116 @@ class Company {
            FROM companies
            ORDER BY name`);
     return companiesRes.rows;
+  }
+
+  //NEED TO TEST!!!!!
+
+  /** Validate filters
+   * 
+   * Make sure query strings requested is an accepted filter
+   * 
+   * Return true if all filters are valid, else throw BadRequestError
+   **/
+  static validateFilters(filters){
+    const OURFILTERS = new Set(["name", "minEmployees", "maxEmployees"])
+    for(const [k,v] of Object.entries(filters)){
+      if (!OURFILTERS.has(k)){
+        console.log(`Found a query string not in our set: ${k}`)
+        throw new BadRequestError(`Query string not found: ${k}`)
+      }
+      else{
+        return true
+      }
+    }
+    //If it isn't in pretermined set, throw error
+  }
+
+//NEED TO TEST!!!!!
+
+  /** Find all companies with given filters.
+   *
+   * Receives an object of filters e.g. {name: 'aya'}
+   * 
+   * Returns [{ handle, name, description, numEmployees, logoUrl }, ...]
+   **/
+
+  //Because the structure of the half of this comes from the solution,
+  //I'm going to annotate the entire function to show understanding
+  static async filterBy(filters = {}){
+
+    //Set a base query if nothing employee-related is requested
+    let query = `SELECT handle,
+                        name,
+                        description,
+                        logo_url AS "logoUrl"
+                 FROM companies`;
+    let queryValues = [];
+    let whereExpressions = []; 
+
+    //If filters are only ones found in our set, we continue
+    if(this.validateFilters(filters)){
+
+      //Deconstruct our filters so we can use them by variable name
+      const { minEmployees, maxEmployees, name } = filters;
+
+      //Throw an error if we try to request a higher min than max
+      if (minEmployees > maxEmployees) {
+        throw new BadRequestError("Min employees cannot be greater than max");
+      }
+
+      // For each possible search term, add to whereExpressions and queryValues so
+      // we can generate the right SQL
+
+      //If minEmployees was passed as a query string
+      //We update our query to include num_employees
+      //We push our minEmployees' value to our array
+      //We push our future WHERE expression to a separate array
+      if (minEmployees !== undefined) {
+        query = `SELECT handle,
+                        name,
+                        description,
+                        num_employees AS "numEmployees",
+                        logo_url AS "logoUrl"
+                 FROM companies`;
+        queryValues.push(minEmployees);
+        whereExpressions.push(`num_employees >= $${queryValues.length}`);
+      }
+      if (maxEmployees !== undefined) {
+        query = `SELECT handle,
+                        name,
+                        description,
+                        num_employees AS "numEmployees",
+                        logo_url AS "logoUrl"
+                 FROM companies`;
+        queryValues.push(maxEmployees);
+        whereExpressions.push(`num_employees <= $${queryValues.length}`);
+      }
+
+      if (name) {
+        queryValues.push(`%${name}%`);
+        whereExpressions.push(`name ILIKE $${queryValues.length}`);
+      }
+      /**
+       * If we have filters
+       * We add, at the bottom of our query:
+       * WHERE num_employees >= $1
+       * AND
+       * WHERE num_employees <= $2
+       * AND
+       * WHERE %name% ILIKE $3
+       */
+      if (whereExpressions.length > 0) {
+        query += " WHERE " + whereExpressions.join(" AND ");
+      }
+      // Finalize query and return results
+      query += " ORDER BY name";
+      //queryValues contains our list for serialized SQL
+      // /companies?name=aya&min_employees=100 was passed
+      //queryValues = ['aya', 100]
+      const companiesRes = await db.query(query, queryValues);
+      return companiesRes.rows;
+    }
+
   }
 
   /** Given a company handle, return data about company.
