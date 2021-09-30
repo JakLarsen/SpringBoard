@@ -30,9 +30,6 @@ app.get("/", function(req, res, next){
   return res.json("You hit the '/' route.")
 })
 
-
-
-
 /** Handle 404 errors -- this matches everything */
 app.use(function (req, res, next) {
   return next(new NotFoundError());

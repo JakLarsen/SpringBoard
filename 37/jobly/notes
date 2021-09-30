@@ -4,7 +4,6 @@
 
 TODO:
 
-- Write tests for Part 2 filterBy() and validateFilters()
 - Look at Part 3 or start Part 4
 
 
@@ -43,4 +42,5 @@ Allow filtering by query string, including:
 
     Do filtering within model - duh
     Make sure combinations of filters work - hmm
-        Write tests
+
+    Write tests

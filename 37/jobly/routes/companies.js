@@ -54,6 +54,7 @@ router.get("/", async function (req, res, next) {
   try {
     //If query strings contain a parameter, filter
     let filters = req.query
+    console.log(filters)
     let companies = {}
 
     if(Object.keys(filters).length !== 0){

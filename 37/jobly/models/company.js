@@ -70,11 +70,18 @@ class Company {
    * Return true if all filters are valid, else throw BadRequestError
    **/
   static validateFilters(filters){
+
+    const {name, minEmployees, maxEmployees} = filters
+
     const OURFILTERS = new Set(["name", "minEmployees", "maxEmployees"])
     for(const [k,v] of Object.entries(filters)){
       if (!OURFILTERS.has(k)){
         // console.log(`Found a query string not in our set: ${k}`)
         throw new BadRequestError(`Query string not found: ${k}`)
+      }
+      //Throw an error if we try to request a higher min than max
+      else if (minEmployees > maxEmployees) {
+        throw new BadRequestError("Min employees cannot be greater than max");
       }
       else{
         return true
@@ -109,11 +116,6 @@ class Company {
 
       //Deconstruct our filters so we can use their values by variable name
       const { minEmployees, maxEmployees, name } = filters;
-
-      //Throw an error if we try to request a higher min than max
-      if (minEmployees > maxEmployees) {
-        throw new BadRequestError("Min employees cannot be greater than max");
-      }
 
       // For each possible search term, add to whereExpressions and queryValues so
       // we can generate the right SQL
@@ -216,8 +218,6 @@ class Company {
           numEmployees: "num_employees",
           logoUrl: "logo_url",
         });
-    console.log(setCols)
-    console.log(values)
     const handleVarIdx = "$" + (values.length + 1);
 
     const querySql = `UPDATE companies 

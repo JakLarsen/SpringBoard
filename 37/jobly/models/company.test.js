@@ -87,6 +87,75 @@ describe("findAll", function () {
   });
 });
 
+/************************************** filterBy() */
+
+describe("filterBy()", function(){
+
+  test("filter by name", async function(){
+    let companies = await Company.filterBy({name: 'c1'})
+    expect(companies).toEqual([
+      {
+        handle: "c1",
+        name: "C1",
+        description: "Desc1",
+        logoUrl: "http://c1.img"
+      }
+    ])
+  });
+
+  test("filter by minEmployees", async function(){
+    let companies = await Company.filterBy({minEmployees: 2})
+    expect(companies).toEqual([
+      {
+        handle: "c2",
+        name: "C2",
+        description: "Desc2",
+        numEmployees: 2,
+        logoUrl: "http://c2.img",
+      },
+      {
+        handle: "c3",
+        name: "C3",
+        description: "Desc3",
+        numEmployees: 3,
+        logoUrl: "http://c3.img",
+      },
+    ]);
+  });
+
+});
+
+
+/************************************** validateFilters() */
+
+describe("validateFilters()", function(){
+  test("returns true if passed one filter in set", function(){
+    let results = Company.validateFilters({name: 'c1'})
+    expect(results).toBeTruthy()
+  });
+
+  test("returns true if passed one filter in set", function(){
+    let results = Company.validateFilters({name: 'c1'})
+    expect(results).toBeTruthy()
+  });
+
+  test("returns true if passed all 3 filters in set", function(){
+    let results = Company.validateFilters({name: 'c1', minEmployees: 1, maxEmployees: 2})
+    expect(results).toBeTruthy()
+  });
+
+  test("minEmployees > maxEmployees should throw BadRequestError", async function(){
+    try {
+      let results = Company.validateFilters({name: 'c1', minEmployees: 5, maxEmployees: 1})
+      fail();
+    } 
+    catch (err) {
+      expect(err instanceof BadRequestError).toBeTruthy();
+    }
+  });
+
+});
+
 /************************************** get */
 
 describe("get", function () {
