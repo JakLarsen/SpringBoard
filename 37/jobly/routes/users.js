@@ -51,7 +51,8 @@ router.post("/", ensureLoggedIn, async function (req, res, next) {
  * Authorization required: login
  **/
 
-router.get("/",  ensureLoggedIn,  async function (req, res, next) {
+//  ensureLoggedIn,
+router.get("/",  async function (req, res, next) {
   try {
     const users = await User.findAll();
     return res.json({ users });
@@ -68,7 +69,8 @@ router.get("/",  ensureLoggedIn,  async function (req, res, next) {
  * Authorization required: login
  **/
 
-router.get("/:username", ensureLoggedIn, async function (req, res, next) {
+//  ensureLoggedIn,
+router.get("/:username", async function (req, res, next) {
   try {
     const user = await User.get(req.params.username);
     return res.json({ user });
@@ -88,7 +90,8 @@ router.get("/:username", ensureLoggedIn, async function (req, res, next) {
  * Authorization required: login
  **/
 
-router.patch("/:username", ensureLoggedIn, async function (req, res, next) {
+//  ensureLoggedIn,
+router.patch("/:username", async function (req, res, next) {
   try {
     const validator = jsonschema.validate(req.body, userUpdateSchema);
     if (!validator.valid) {
