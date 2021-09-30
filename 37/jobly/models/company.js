@@ -100,12 +100,15 @@ class Company {
    */
 
   static async update(handle, data) {
+    // console.log("In Company.update(handle, data)")
     const { setCols, values } = sqlForPartialUpdate(
         data,
         {
           numEmployees: "num_employees",
           logoUrl: "logo_url",
         });
+    console.log(setCols)
+    console.log(values)
     const handleVarIdx = "$" + (values.length + 1);
 
     const querySql = `UPDATE companies 

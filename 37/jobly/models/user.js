@@ -49,6 +49,8 @@ class User {
     throw new UnauthorizedError("Invalid username/password");
   }
 
+
+
   /** Register user with data.
    *
    * Returns { username, firstName, lastName, email, isAdmin }
