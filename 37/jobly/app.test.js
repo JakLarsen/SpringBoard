@@ -1,8 +1,14 @@
 const request = require("supertest");
-
 const app = require("./app");
 const db = require("./db");
 
+
+
+test("GET /", async function(){
+  const resp = await request(app).get('/')
+  expect(resp.statusCode).toEqual(200)
+  expect(resp.body).toEqual("You hit the '/' route.")
+})
 
 test("not found for site 404", async function () {
   const resp = await request(app).get("/no-such-path");
