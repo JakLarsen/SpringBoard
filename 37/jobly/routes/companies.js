@@ -52,9 +52,10 @@ router.post("/", ensureLoggedIn, async function (req, res, next) {
 
 router.get("/", async function (req, res, next) {
   try {
-    //If query strings contain a valid parameter, filter
+    //If query strings contain a parameter, filter
     let filters = req.query
     let companies = {}
+
     if(Object.keys(filters).length !== 0){
       companies = await Company.filterBy(filters)
     }

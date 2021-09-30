@@ -65,7 +65,7 @@ class Company {
 
   /** Validate filters
    * 
-   * Make sure query strings requested is an accepted filter
+   * Make sure query strings requested are accepted filters
    * 
    * Return true if all filters are valid, else throw BadRequestError
    **/
@@ -73,14 +73,13 @@ class Company {
     const OURFILTERS = new Set(["name", "minEmployees", "maxEmployees"])
     for(const [k,v] of Object.entries(filters)){
       if (!OURFILTERS.has(k)){
-        console.log(`Found a query string not in our set: ${k}`)
+        // console.log(`Found a query string not in our set: ${k}`)
         throw new BadRequestError(`Query string not found: ${k}`)
       }
       else{
         return true
       }
     }
-    //If it isn't in pretermined set, throw error
   }
 
 //NEED TO TEST!!!!!
@@ -105,10 +104,10 @@ class Company {
     let queryValues = [];
     let whereExpressions = []; 
 
-    //If filters are only ones found in our set, we continue
+    //If filters are valid ones found in our set, we continue
     if(this.validateFilters(filters)){
 
-      //Deconstruct our filters so we can use them by variable name
+      //Deconstruct our filters so we can use their values by variable name
       const { minEmployees, maxEmployees, name } = filters;
 
       //Throw an error if we try to request a higher min than max
@@ -121,7 +120,7 @@ class Company {
 
       //If minEmployees was passed as a query string
       //We update our query to include num_employees
-      //We push our minEmployees' value to our array
+      //We push our minEmployees' value to our value array
       //We push our future WHERE expression to a separate array
       if (minEmployees !== undefined) {
         query = `SELECT handle,
@@ -150,7 +149,7 @@ class Company {
       }
       /**
        * If we have filters
-       * We add, at the bottom of our query:
+       * We add, at the bottom of our query, for example:
        * WHERE num_employees >= $1
        * AND
        * WHERE num_employees <= $2
@@ -162,8 +161,8 @@ class Company {
       }
       // Finalize query and return results
       query += " ORDER BY name";
-      //queryValues contains our list for serialized SQL
-      // /companies?name=aya&min_employees=100 was passed
+      //queryValues contains our list for serialized SQL variables
+      //E.G. if /companies?name=aya&min_employees=100 was passed
       //queryValues = ['aya', 100]
       const companiesRes = await db.query(query, queryValues);
       return companiesRes.rows;
