@@ -16,5 +16,7 @@ Components
   - Babel - transpiles jsx into js
 
 JSX and Properties
+ - JavaScript Syntax Extension
+ - Properties are IMMUTABLE and cannot change
 
 traditional class-based react vs newer function-based
