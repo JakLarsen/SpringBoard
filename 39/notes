@@ -1,0 +1,20 @@
+React
+
+
+
+A main goal
+ - give us a lightweight frontend framework to help us create reusable components and modular applications
+
+Components 
+ - the building blocks, UI + Logic generally
+ - Write a function that returns HTML-esque code to render
+
+ Scripts (Must be in that order)
+  - React
+  - ReactDOM
+    - (Takes a components to render and a location on the DOM to add it)
+  - Babel - transpiles jsx into js
+
+JSX and Properties
+
+traditional class-based react vs newer function-based
