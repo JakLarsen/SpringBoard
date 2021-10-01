@@ -1,0 +1,63 @@
+
+
+
+
+
+
+Coding Interview 101
+
+1 Take time to understand the problem
+ - Restate it in your own words
+ - What are the inputs that goes in
+ - What are the goal outputs of the function
+ - Do you have enough information
+ - How to label the data
+ - Communicate with the interviewers
+ - Talk about potential tradeoffs etc.
+ - don't make assumptions - ask about the input
+ --Can it be empty? A string or int? ASK EVERYTHING
+ ---SHOW THAT YOU WANT TO UNDERSTAND THE PROBLEM FROM ALL ANGLES. SAY THAT
+2 Explore concerete examples in PSEUDOCODE
+ - Start with simple examples
+ - Progress to more complex
+ - Think about edge cases or exceptions
+3 Break it down
+ - conceptualize the steps in pseudocode or english
+4 Solve a simpler problem
+5 Use tools strategically
+6 Look back and refactor
+ - Look for inefficiencies
+ - Look for ways to improve it
+ - Is it all working as expected?
+ - Can you make it more easier to understand?
+ - You can talk to the interviewer and ask for feedback
+ - Here is a time to discuss it
+ - Have you seen any just completely absurd approaches when giving this problem?
+
+ --ASK FOR HELP. COMMUNICATE. BE A HUMAN BEING. SMILE.
+
+
+
+Whiteboarding 101
+
+1 Repeat the prompt back in your own words
+2 Ask clarifying questions
+- Ask about input clarifications
+- Ask about edge cases
+- Ask about different things that would be relevant to you both
+3 WRITE DOWN SHORT BULLETED LIST OF THE REQUIREMENTS
+4 Write down a test case or two
+5 Talk briefly about how you'll approach the problem
+6 Write some pseudocode
+7 Start at top left when writing code
+8 Write CLEARLY and NEATLY
+9 DONT GO QUIET FOR MORE THAN LIKE 20SECONDS - talk to the interviewer
+10 If you really get stuck - don't be afraid to ask for a hint, but illustrate things you know could be possibilities
+ - No one wants to watch you truly struggle
+
+
+Show them that "Hey I'm someone you want to hire"
+- I'm not going to panic
+- I can explain what I'm doing clearly
+- I can communicate my thoughts clearly
+- I know some code as well

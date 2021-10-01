@@ -10,8 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4",
+    "express": "^4.17.1",
     "jsonschema": "^1.4.0",
-    "locus": "^2.0.1"
+    "locus": "^2.0.1",
+    "nodemon": "^2.0.13",
+    "pg": "^8.7.1",
+    "supertest": "^6.1.6"
   }
 }

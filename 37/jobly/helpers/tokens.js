@@ -12,6 +12,7 @@ function createToken(user) {
     isAdmin: user.isAdmin || false,
   };
 
+  console.log('in createToken')
   return jwt.sign(payload, SECRET_KEY);
 }
 
