@@ -1,23 +1,18 @@
 import React from 'react';
+import ShoppingCartItem from './ShoppingCartItem';
 
 
 const ShoppingCart = ({items}) =>{
-
+    const total = items.reduce((acc, i)=>{
+        return acc + i.price * i.qty
+    }, 0)
     return(
         <div>
             <h1>Shopping Cart</h1>
-            <div>
-                {items.map(i =>(
-                <div>
-                    <h4>{i.name}</h4>
-                    <img src={i.img} width = "200"/>
-                    <ul>
-                    <li>Price: ${i.price}</li>
-                    <li>Quantity: {i.qty}</li>
-                    </ul>
-                </div>
-                ))}
-            </div>
+            {items.map(i => (
+                <ShoppingCartItem name={i.name} img={i.img} price={i.price} qty={i.qty} />
+            ))}
+            <b>Cart Total: ${total}</b>
         </div>
     )
 }

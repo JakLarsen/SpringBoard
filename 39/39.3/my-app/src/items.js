@@ -3,7 +3,7 @@ const items = [
         id: 3,
         name: 'Barley Malt Syrup',
         price: 12.44,
-        qty: 1,
+        qty: 4,
         img: 'https://www.kroger.com/product/images/xlarge/front/0002418249115'
     }, 
     {
