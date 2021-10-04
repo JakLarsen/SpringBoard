@@ -1,0 +1,24 @@
+
+
+
+
+
+.Pokecard-card{
+    background-color: #272727;
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+
+
+    color: #FFF;
+    width: 10rem;
+    height: 13rem;
+    border-radius: 5px;
+    margin: 1rem;
+}
+
+.Pokecard-name, .Pokecard-type, .Pokecard-exp{
+    margin: 0;
+}
