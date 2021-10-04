@@ -1,0 +1,22 @@
+
+
+
+
+.Ball-container{
+    /* background-color: orangered; */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Ball-ball{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #FFF;
+    height: 15rem;
+    width: 15rem;
+    border-radius: 100%;
+}
