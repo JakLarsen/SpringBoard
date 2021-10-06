@@ -11,6 +11,7 @@ const Job = require("../models/job");
 
 const jobNewSchema = require("../schemas/jobNew.json");
 const jobUpdateSchema = require("../schemas/jobUpdate.json");
+const db = require("../db");
 
 const router = new express.Router();
 
@@ -21,9 +22,8 @@ const router = new express.Router();
  * Job should be {title, salary, equity, company_handle}
  * Returns {title, salary, equity, company_handle}
  * 
- * Authorization required: login
+ * Authorization required: Login
 */
-
 router.post("/", async function(req,res,next){
     try{
         const validator = jsonschema.validate(req.body, jobNewSchema);
@@ -45,9 +45,8 @@ router.post("/", async function(req,res,next){
  * Can filter on provided search filters: title, minSalary, hasEquity
  * Returns {jobs: [{title, salary, equity, company_handle}]}
  * 
- * Authorization required: none
+ * Authorization required: None
  */
-
 router.get('/', async function (req,res,next){
     try{
         let filters = req.query
@@ -59,12 +58,31 @@ router.get('/', async function (req,res,next){
         else{
             jobs = await Job.findAll()
         }
-        return res.json({ jobs })
+        return res.status(200).json({ jobs })
     }
     catch(e){
         return next(e)
     }
-})
+});
+
+/**
+ * GET '/jobs/id'
+ * 
+ * Get a job by id
+ * Returns {id, title, salary, equity, company_handle}
+ * 
+ * Authorization: None
+ */
+ router.get("/:id", async function (req, res, next) {
+    try {
+      console.log('in Jobs /jobs/id')
+      const job = await Job.get(req.params.id);
+      return res.json({ job });
+    } 
+    catch (err) {
+      return next(err);
+    }
+});
 
 
 
@@ -74,32 +92,6 @@ router.get('/', async function (req,res,next){
 
 
 
-
-
-
-
-
-
-
-
-
-
-// /** GET /[handle]  =>  { company }
-//  *
-//  *  Company is { handle, name, description, numEmployees, logoUrl, jobs }
-//  *   where jobs is [{ id, title, salary, equity }, ...]
-//  *
-//  * Authorization required: none
-//  */
-
-// router.get("/:handle", async function (req, res, next) {
-//   try {
-//     const company = await Company.get(req.params.handle);
-//     return res.json({ company });
-//   } catch (err) {
-//     return next(err);
-//   }
-// });
 
 // /** PATCH /[handle] { fld1, fld2, ... } => { company }
 //  *

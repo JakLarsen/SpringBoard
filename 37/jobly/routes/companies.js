@@ -80,9 +80,11 @@ router.get("/", async function (req, res, next) {
 
 router.get("/:handle", async function (req, res, next) {
   try {
+    console.log('in Companies /companies/get/:handle')
     const company = await Company.get(req.params.handle);
     return res.json({ company });
-  } catch (err) {
+  } 
+  catch (err) {
     return next(err);
   }
 });

@@ -109,6 +109,28 @@ class Job {
         return jobRes.rows
     }
 
+    /**
+     * Get a job by id
+     * 
+     * Returns {id, title, salary, equity, company_handle}
+     * 
+     * Authorization: None
+     */
+    static async get(id){
+        // console.log('In Job.get/id')
+        const results = await db.query(
+            `SELECT id, title, salary, equity, company_handle
+            FROM jobs
+            WHERE id = $1`,
+            [id]
+        )
+        // console.log(results)
+        const job = results.rows[0]
+        if (!job) throw new NotFoundError(`Id doesn't exist: ${id}`);
+
+        return job;
+    }
+
 
 
 
