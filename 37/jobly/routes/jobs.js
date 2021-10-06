@@ -24,6 +24,7 @@ const router = new express.Router();
  * 
  * Authorization required: Login
 */
+// ensureLoggedIn, ensureIsAdmin,
 router.post("/", async function(req,res,next){
     try{
         const validator = jsonschema.validate(req.body, jobNewSchema);
@@ -85,11 +86,31 @@ router.get('/', async function (req,res,next){
 });
 
 
+/**
+ * Patch jobs route
+ * Patch jobs model
+ * Patch jobs tests for both
+ * 
+ * Delete jobs route
+ * Delete jobs model
+ * Delete jobs tests for both
+ * 
+ * -Show jobs for a company in GET /companies/:handle now
+ * Update model ^
+ * 
+ * Add application schemas
+ * Add POST /users/:username/jobs/:id to apply for job (just return {applied: jobID})
+ * Add apply() to User Model to be used in POST route
+ * Tests for both
+ * Give users/:username more return information including{..., applications: [jobID, jobID]}
+ * 
+ * 
+ */
 
 
 
-
-
+// ensureLoggedIn, ensureIsAdmin,
+// ensureLoggedIn, ensureIsAdmin,
 
 
 

@@ -1,11 +1,55 @@
-
+/**
+ * Patch jobs route
+ * Patch jobs model
+ * Patch jobs tests for both
+ * 
+ * Delete jobs route
+ * Delete jobs model
+ * Delete jobs tests for both
+ * 
+ * -Show jobs for a company in GET /companies/:handle now
+ * Update model ^
+ * 
+ * Add application schemas
+ * Add POST /users/:username/jobs/:id to apply for job (just return {applied: jobID})
+ * Add apply() to User Model to be used in POST route
+ * Tests for both
+ * Give users/:username more return information including{..., applications: [jobID, jobID]}
+ * 
+ * 
+ */
 
 
 
 TODO:
 
-- Look at Part 4
 
+10/7
+
+
+ 10/6
+ - First half Part 4
+
+ /**
+ * Patch jobs route
+ * Patch jobs model
+ * Patch jobs tests for both
+ * 
+ * Delete jobs route
+ * Delete jobs model
+ * Delete jobs tests for both
+ * 
+ * -Show jobs for a company in GET /companies/:handle now
+ * Update model ^
+ * 
+
+ PART 5
+ * Add application schemas
+ * Add POST /users/:username/jobs/:id to apply for job (just return {applied: jobID})
+ * Add apply() to User Model to be used in POST route
+ * Tests for both
+ * Give users/:username more return information including{..., applications: [jobID, jobID]}
+ */
 
 
 9/30

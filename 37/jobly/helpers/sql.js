@@ -3,7 +3,7 @@ const { BadRequestError } = require("../expressError");
 // THIS NEEDS SOME GREAT DOCUMENTATION.
 
 /** 
- * Receives an object with properties from either a Company or User class to .update()
+ * Receives an object with properties from either a Company, User, or Job class to .update()
  * E.G. {name: "Jake Overtook This Company", description: "MUAHAHA"}
  * 
  * And converts it into a serialized sql version 

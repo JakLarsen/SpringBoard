@@ -64,7 +64,7 @@ router.get("/",  async function (req, res, next) {
 });
 
 
-/** GET /[username] => { user }
+/** GET /:username => { user }
  *
  * Returns { username, firstName, lastName, isAdmin }
  *
