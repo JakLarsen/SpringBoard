@@ -61,8 +61,6 @@ class Company {
     return companiesRes.rows;
   }
 
-  //NEED TO TEST!!!!!
-
   /** Validate filters
    * 
    * Make sure query strings requested are accepted filters
@@ -88,8 +86,6 @@ class Company {
       }
     }
   }
-
-//NEED TO TEST!!!!!
 
   /** Find all companies with given filters.
    *

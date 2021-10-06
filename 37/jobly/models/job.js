@@ -1,5 +1,6 @@
 "use strict";
 
+const { query } = require("express");
 const db = require("../db");
 const { BadRequestError, NotFoundError } = require("../expressError");
 const { sqlForPartialUpdate } = require("../helpers/sql");
@@ -9,11 +10,9 @@ const { sqlForPartialUpdate } = require("../helpers/sql");
 class Job {
 
   /** Create a Job (from data), update db, return new Job data.
-   *
-   * data should be { title, salary, equity, company_handle }
-   *
+   * 
+   * Data should be { title, salary, equity, company_handle }
    * Returns { title, salary, equity, company_handle }
-   *
    * */
 
     static async create({title, salary, equity, company_handle}){
@@ -29,137 +28,108 @@ class Job {
         return job;
     }
 
+    static async findAll(){
+
+        const results = await db.query(
+            `SELECT title, salary, equity, company_handle
+            FROM jobs
+            ORDER BY title`
+        )
+        return results.rows
+    }
+
+    /** Validate filters - should be in helpers eventually not in company and job separately
+     * 
+     * Make sure query strings requested are accepted filters
+     * Return true if all filters are valid, else throw BadRequestError
+     **/
+
+    static validateFilters(filters){
+
+        const {title, minSalary, hasEquity} = filters
+        const OURFILTERS = new Set(['title','minSalary','hasEquity'])
+
+        for(const[k,v] of Object.entries(filters)){
+            if (!OURFILTERS.has(k)){
+                // console.log(`Found a query string not in our set: ${k}`)
+                throw new BadRequestError(`Query string not found: ${k}`)
+            }
+            else{
+                return true
+            }
+        }
+    }
+
+    /** Find all Jobs with given filters
+     * 
+     * Receives an object of filters e.g. {title: 'Software'}
+     * Returns a list of Jobs matching filters [{title,salary,equity,company_handle}]
+     */
+
+    static async filterBy(filters = {}){
+        
+        // console.log('In Job.filterBy')
+        //BASE QUERY
+        let baseQuery = 
+        `SELECT title, salary, equity, company_handle
+        FROM jobs`
+
+        let queryValues = []
+        let whereExpressions = []
+
+        //IF FILTERS VALIDATED
+        if(this.validateFilters(filters)){
+            const {title, minSalary, hasEquity} = filters
+
+            if(title){
+                queryValues.push(`%${title}%`)
+                whereExpressions.push(`title ILIKE $${queryValues.length} `)
+            }
+            if(minSalary){
+                queryValues.push(minSalary)
+                whereExpressions.push(`salary > $${queryValues.length}`)
+            }
+            if(hasEquity){
+                queryValues.push(0)
+                if (hasEquity.toLowerCase() === 'true'){
+                    whereExpressions.push(`equity > $${queryValues.length} `)
+                }
+                else{
+                    whereExpressions.push(`equity = $${queryValues.length} `)
+                }
+            }
+            if (whereExpressions.length > 0) {
+                baseQuery += " WHERE " + whereExpressions.join(" AND ");
+            }
+            baseQuery += 'ORDER BY title'
+            // console.log(baseQuery, queryValues)
+        }
+        const jobRes = await db.query(baseQuery, queryValues)
+        // console.log(jobRes)
+        return jobRes.rows
+    }
 
 
 
 
-//   /** Find all companies.
-//    *
-//    * Returns [{ handle, name, description, numEmployees, logoUrl }, ...]
-//    **/
 
-//   static async findAll() {
-//     const companiesRes = await db.query(
-//           `SELECT handle,
-//                   name,
-//                   description,
-//                   num_employees AS "numEmployees",
-//                   logo_url AS "logoUrl"
-//            FROM companies
-//            ORDER BY name`);
-//     return companiesRes.rows;
-//   }
 
-//   //NEED TO TEST!!!!!
 
-//   /** Validate filters
-//    * 
-//    * Make sure query strings requested are accepted filters
-//    * 
-//    * Return true if all filters are valid, else throw BadRequestError
-//    **/
-//   static validateFilters(filters){
 
-//     const {name, minEmployees, maxEmployees} = filters
 
-//     const OURFILTERS = new Set(["name", "minEmployees", "maxEmployees"])
-//     for(const [k,v] of Object.entries(filters)){
-//       if (!OURFILTERS.has(k)){
-//         // console.log(`Found a query string not in our set: ${k}`)
-//         throw new BadRequestError(`Query string not found: ${k}`)
-//       }
-//       //Throw an error if we try to request a higher min than max
-//       else if (minEmployees > maxEmployees) {
-//         throw new BadRequestError("Min employees cannot be greater than max");
-//       }
-//       else{
-//         return true
-//       }
-//     }
-//   }
 
-// //NEED TO TEST!!!!!
 
-//   /** Find all companies with given filters.
-//    *
-//    * Receives an object of filters e.g. {name: 'aya'}
-//    * 
-//    * Returns [{ handle, name, description, numEmployees, logoUrl }, ...]
-//    **/
 
-//   //Because the structure of the half of this comes from the solution,
-//   //I'm going to annotate the entire function to show understanding
-//   static async filterBy(filters = {}){
 
-//     //Set a base query if nothing employee-related is requested
-//     let query = `SELECT handle,
-//                         name,
-//                         description,
-//                         logo_url AS "logoUrl"
-//                  FROM companies`;
-//     let queryValues = [];
-//     let whereExpressions = []; 
 
-//     //If filters are valid ones found in our set, we continue
-//     if(this.validateFilters(filters)){
 
-//       //Deconstruct our filters so we can use their values by variable name
-//       const { minEmployees, maxEmployees, name } = filters;
 
-//       // For each possible search term, add to whereExpressions and queryValues so
-//       // we can generate the right SQL
 
-//       //If minEmployees was passed as a query string
-//       //We update our query to include num_employees
-//       //We push our minEmployees' value to our value array
-//       //We push our future WHERE expression to a separate array
-//       if (minEmployees !== undefined) {
-//         query = `SELECT handle,
-//                         name,
-//                         description,
-//                         num_employees AS "numEmployees",
-//                         logo_url AS "logoUrl"
-//                  FROM companies`;
-//         queryValues.push(minEmployees);
-//         whereExpressions.push(`num_employees >= $${queryValues.length}`);
-//       }
-//       if (maxEmployees !== undefined) {
-//         query = `SELECT handle,
-//                         name,
-//                         description,
-//                         num_employees AS "numEmployees",
-//                         logo_url AS "logoUrl"
-//                  FROM companies`;
-//         queryValues.push(maxEmployees);
-//         whereExpressions.push(`num_employees <= $${queryValues.length}`);
-//       }
 
-//       if (name) {
-//         queryValues.push(`%${name}%`);
-//         whereExpressions.push(`name ILIKE $${queryValues.length}`);
-//       }
-//       /**
-//        * If we have filters
-//        * We add, at the bottom of our query, for example:
-//        * WHERE num_employees >= $1
-//        * AND
-//        * WHERE num_employees <= $2
-//        * AND
-//        * WHERE %name% ILIKE $3
-//        */
-//       if (whereExpressions.length > 0) {
-//         query += " WHERE " + whereExpressions.join(" AND ");
-//       }
-//       // Finalize query and return results
-//       query += " ORDER BY name";
-//       //queryValues contains our list for serialized SQL variables
-//       //E.G. if /companies?name=aya&min_employees=100 was passed
-//       //queryValues = ['aya', 100]
-//       const companiesRes = await db.query(query, queryValues);
-//       return companiesRes.rows;
-//     }
 
-//   }
+
+
+    
 
 //   /** Given a company handle, return data about company.
 //    *

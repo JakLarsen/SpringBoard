@@ -15,16 +15,10 @@ const jobUpdateSchema = require("../schemas/jobUpdate.json");
 const router = new express.Router();
 
 
-// router.get("/", async function(req,res,next){
-//     res.json('You hit the jobs route!')
-// })
 
-
-
-/**POST / { job } => {job} 
+/**POST '/jobs' { job } => {job} 
  * 
- * job should be {title, salar, equity, company_handle}
- * 
+ * Job should be {title, salary, equity, company_handle}
  * Returns {title, salary, equity, company_handle}
  * 
  * Authorization required: login
@@ -39,6 +33,33 @@ router.post("/", async function(req,res,next){
         }
         const job = await Job.create(req.body);
         return res.status(201).json({job})
+    }
+    catch(e){
+        return next(e)
+    }
+})
+
+/**
+ * GET '/jobs'
+ * 
+ * Can filter on provided search filters: title, minSalary, hasEquity
+ * Returns {jobs: [{title, salary, equity, company_handle}]}
+ * 
+ * Authorization required: none
+ */
+
+router.get('/', async function (req,res,next){
+    try{
+        let filters = req.query
+        let jobs = {}
+        //IF QUERY STRINGS CONTAIN PARAMETERS, FILTER
+        if(Object.keys(filters).length !==0){
+            jobs = await Job.filterBy(filters)
+        }
+        else{
+            jobs = await Job.findAll()
+        }
+        return res.json({ jobs })
     }
     catch(e){
         return next(e)
@@ -62,37 +83,6 @@ router.post("/", async function(req,res,next){
 
 
 
-
-
-// /** GET /  =>
-//  *   { companies: [ { handle, name, description, numEmployees, logoUrl }, ...] }
-//  *
-//  * Can filter on provided search filters:
-//  * - minEmployees
-//  * - maxEmployees
-//  * - nameLike (will find case-insensitive, partial matches)
-//  *
-//  * Authorization required: none
-//  */
-
-// router.get("/", async function (req, res, next) {
-//   try {
-//     //If query strings contain a parameter, filter
-//     let filters = req.query
-//     console.log(filters)
-//     let companies = {}
-
-//     if(Object.keys(filters).length !== 0){
-//       companies = await Company.filterBy(filters)
-//     }
-//     else{
-//       companies = await Company.findAll();
-//     }
-//     return res.json({ companies });
-//   } catch (err) {
-//     return next(err);
-//   }
-// });
 
 // /** GET /[handle]  =>  { company }
 //  *

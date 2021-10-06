@@ -51,5 +51,20 @@ describe("create", function () {
         },
       ])
     });
+});
 
+/************************************** validateFilters() */
+
+describe("validateFilters()", function(){
+    test("returns true if passed one filter in accepted set", function(){
+      let results = Job.validateFilters({title: 'c1'})
+      expect(results).toBeTruthy()
+    });
+  
+    test("returns true if passed all 3 filters in set", function(){
+      let results = Job.validateFilters({title: 'c1', minSalary: 1, hasEquity: 'true'})
+      expect(results).toBeTruthy()
+    });
+
+    //Could do some hasEquity and minSalary tests, but not necessary right now
 });
