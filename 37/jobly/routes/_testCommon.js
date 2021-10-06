@@ -4,12 +4,15 @@ const db = require("../db.js");
 const User = require("../models/user");
 const Company = require("../models/company");
 const { createToken } = require("../helpers/tokens");
+const Job = require("../models/job.js");
 
 async function commonBeforeAll() {
   // noinspection SqlWithoutWhere
   await db.query("DELETE FROM users");
   // noinspection SqlWithoutWhere
   await db.query("DELETE FROM companies");
+  // noinspection SqlWithoutWhere
+  await db.query("DELETE FROM jobs");
 
   await Company.create(
       {
@@ -35,6 +38,28 @@ async function commonBeforeAll() {
         description: "Desc3",
         logoUrl: "http://c3.img",
       });
+  
+  await Job.create(
+    {
+      title: "j1",
+      salary: 1,
+      equity: 0,
+      company_handle: "c1"
+    });
+  await Job.create(
+    {
+      title: "j2",
+      salary: 2,
+      equity: 0,
+      company_handle: "c2"
+    });
+  await Job.create(
+    {
+      title: "j3",
+      salary: 3,
+      equity: 0,
+      company_handle: "c2"
+    });
 
   await User.register({
     username: "u1",
