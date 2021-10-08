@@ -111,8 +111,30 @@ describe('update', function(){
       expect(err instanceof BadRequestError).toBeTruthy();
     }
   })
-
-
 })
+
+/************************************** remove */
+
+describe("remove", function () {
+  test("works", async function () {
+    let jobs = await Job.findAll()
+    let firstJob = jobs[0]
+    console.log(firstJob.id)
+    await Job.remove(firstJob.id);
+    const res = await db.query(
+        `SELECT id FROM jobs WHERE id = ${firstJob.id}`);
+    expect(res.rows.length).toEqual(0);
+  });
+
+  test("not found if job id doesn't exist", async function () {
+    try {
+      await Job.remove(99999);
+      fail();
+    } catch (err) {
+      expect(err instanceof NotFoundError).toBeTruthy();
+    }
+  });
+});
+
 
 

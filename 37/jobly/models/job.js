@@ -136,7 +136,6 @@ class Job {
      * This is a partial update: data can include {title, salary, equity, company_handle}
      * Returns {id, salary, equity, company_handle}
      */
-
     static async update(id, data){
         const {setCols, values} = sqlForPartialUpdate(
             data,

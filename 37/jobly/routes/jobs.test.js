@@ -61,32 +61,32 @@ describe("POST /jobs", function(){
 
 describe('GET /jobs works', function(){
 
-    test("getting all works", async function () {
-        const resp = await request(app).get("/jobs")
-        expect(resp.body).toEqual(
-            { jobs: [
-                        {
-                            title: "j1",
-                            salary: 1,
-                            equity: "0",
-                            company_handle: "c1"
-                        },
-                        {
-                            title: "j2",
-                            salary: 2,
-                            equity: "0",
-                            company_handle: "c2"
-                        },
-                        {
-                            title: "j3",
-                            salary: 3,
-                            equity: "0",
-                            company_handle: "c2"
-                        }
-                    ]
-            }
-        )
-    });
+    // test("getting all works", async function () {
+    //     const resp = await request(app).get("/jobs")
+    //     expect(resp.body).toEqual(
+    //         { jobs: [
+    //                     {
+    //                         title: "j1",
+    //                         salary: 1,
+    //                         equity: "0",
+    //                         company_handle: "c1"
+    //                     },
+    //                     {
+    //                         title: "j2",
+    //                         salary: 2,
+    //                         equity: "0",
+    //                         company_handle: "c2"
+    //                     },
+    //                     {
+    //                         title: "j3",
+    //                         salary: 3,
+    //                         equity: "0",
+    //                         company_handle: "c2"
+    //                     }
+    //                 ]
+    //         }
+    //     )
+    // });
 });
 
 /************************************** GET /jobs/:id */
@@ -119,35 +119,30 @@ describe("GET /jobs/:id", function(){
 
 
 
-// describe("GET /companies/:handle", function () {
-//     test("works for anon", async function () {
-//       const resp = await request(app).get(`/companies/c1`);
-//       expect(resp.body).toEqual({
-//         company: {
-//           handle: "c1",
-//           name: "C1",
-//           description: "Desc1",
-//           numEmployees: 1,
-//           logoUrl: "http://c1.img",
-//         },
-//       });
-//     });
+/************************************** DELETE /jobs/:id */
+
+describe("DELETE /jobs/:id", function () {
+    test("works for users", async function () {
+        let jobs = await Job.findAll()
+        let firstJob = jobs[0]
+        // console.log(firstJob)
+        const resp = await request(app).delete(`/jobs/${firstJob.id}`)
+          .set("authorization", `Bearer ${u1Token}`);
+        expect(resp.body).toEqual({ deleted: `${firstJob.id}`});
+    });
   
-//     test("works for anon: company w/o jobs", async function () {
-//       const resp = await request(app).get(`/companies/c2`);
-//       expect(resp.body).toEqual({
-//         company: {
-//           handle: "c2",
-//           name: "C2",
-//           description: "Desc2",
-//           numEmployees: 2,
-//           logoUrl: "http://c2.img",
-//         },
-//       });
-//     });
+    // test("unauth for anon", async function () {
+    //     let jobs = await Job.findAll()
+    //     let firstJob = jobs[0]
+    //     const resp = await request(app)
+    //       .delete(`/jobs/${firstJob.id}`);
+    //     expect(resp.statusCode).toEqual(401);
+    // });
   
-//     test("not found for no such company", async function () {
-//       const resp = await request(app).get(`/companies/nope`);
-//       expect(resp.statusCode).toEqual(404);
-//     });
-//   });
+    test("not found for no such job", async function () {
+      const resp = await request(app)
+          .delete(`/job/99999`)
+          .set("authorization", `Bearer ${u1Token}`);
+      expect(resp.statusCode).toEqual(404);
+    });
+  });
