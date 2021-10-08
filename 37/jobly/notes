@@ -24,17 +24,11 @@
 TODO:
 
 
-10/7
-
-
- 10/6
- - First half Part 4
-
- /**
- * Patch jobs route
- * Patch jobs model
+10/8
+ * DONE Patch jobs route
+ * DONE Patch jobs model 
  * Patch jobs tests for both
- * 
+ 
  * Delete jobs route
  * Delete jobs model
  * Delete jobs tests for both
@@ -49,7 +43,12 @@ TODO:
  * Add apply() to User Model to be used in POST route
  * Tests for both
  * Give users/:username more return information including{..., applications: [jobID, jobID]}
- */
+ 
+
+ 10/6
+ - First half Part 4
+
+
 
 
 9/30

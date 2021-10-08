@@ -86,60 +86,37 @@ router.get('/', async function (req,res,next){
 });
 
 
+
 /**
- * Patch jobs route
- * Patch jobs model
- * Patch jobs tests for both
+ * PATCH '/jobs/id
  * 
- * Delete jobs route
- * Delete jobs model
- * Delete jobs tests for both
+ * fields can be: {title, salary, equity}
+ * Returns {id, title, salary, equity, company_handle}
  * 
- * -Show jobs for a company in GET /companies/:handle now
- * Update model ^
- * 
- * Add application schemas
- * Add POST /users/:username/jobs/:id to apply for job (just return {applied: jobID})
- * Add apply() to User Model to be used in POST route
- * Tests for both
- * Give users/:username more return information including{..., applications: [jobID, jobID]}
- * 
- * 
+ * Authorization required: Login, Admin
  */
-
-
-
 // ensureLoggedIn, ensureIsAdmin,
-// ensureLoggedIn, ensureIsAdmin,
+router.patch('/:id', async function(req,res,next){
+    try{
+        const validator = jsonschema.validate(req.body, jobUpdateSchema)
+        if (!validator.valid){
+            const errs = validator.errors.map(e => e.stack)
+            throw new BadRequestError(errs)
+        }
+        const job = await Job.update(req.params.id, req.body)
+        return res.status(200).json({job})
+    }
+    catch(e){
+        return next(e)
+    }
+})
 
 
 
-// /** PATCH /[handle] { fld1, fld2, ... } => { company }
-//  *
-//  * Patches company data.
-//  *
-//  * fields can be: { name, description, numEmployees, logo_url }
-//  *
-//  * Returns { handle, name, description, numEmployees, logo_url }
-//  *
-//  * Authorization required: login
-//  */
 
-// // ensureLoggedIn, ensureIsAdmin,
-// router.patch("/:handle", async function (req, res, next) {
-//   try {
-//     const validator = jsonschema.validate(req.body, companyUpdateSchema);
-//     if (!validator.valid) {
-//       const errs = validator.errors.map(e => e.stack);
-//       throw new BadRequestError(errs);
-//     }
 
-//     const company = await Company.update(req.params.handle, req.body);
-//     return res.json({ company });
-//   } catch (err) {
-//     return next(err);
-//   }
-// });
+
+
 
 // /** DELETE /[handle]  =>  { deleted: handle }
 //  *

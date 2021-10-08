@@ -68,3 +68,51 @@ describe("validateFilters()", function(){
 
     //Could do some hasEquity and minSalary tests, but not necessary right now
 });
+
+/************************************** update */
+
+describe('update', function(){
+
+  const updateData = {
+    title: 'UPDATED',
+    salary: 42,
+    equity: 0.1,
+  }
+  test('works', async function(){
+    let jobs = await Job.findAll()
+    let firstJob = jobs[0]
+    let job =  await Job.update(firstJob.id, updateData)
+    expect(job).toEqual({
+      id: firstJob.id,
+      title: 'UPDATED',
+      salary: 42,
+      equity: '0.1',
+      companyHandle: 'c1'
+    })
+  })
+  test('not found if no such job', async function(){
+    try{
+      await Job.update(17, updateData)
+      fail();
+    }
+    catch(err){
+      expect(err instanceof NotFoundError).toBeTruthy();
+    }
+  })
+
+  test('bad request if no data', async function(){
+    try{
+      let jobs = await Job.findAll()
+      let firstJob = jobs[0]
+      await Job.update(firstJob.id, {})
+      fail();
+    }
+    catch(err){
+      expect(err instanceof BadRequestError).toBeTruthy();
+    }
+  })
+
+
+})
+
+
