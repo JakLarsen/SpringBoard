@@ -64,7 +64,7 @@ router.get("/", async function (req, res, next) {
     else{
       companies = await Company.findAll();
     }
-    return res.json({ companies });
+    return res.json({companies});
   } catch (err) {
     return next(err);
   }

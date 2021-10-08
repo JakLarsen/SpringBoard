@@ -188,10 +188,18 @@ class Company {
         [handle]);
 
     const company = companyRes.rows[0];
-
     if (!company) throw new NotFoundError(`No company: ${handle}`);
 
-    return company;
+    const jobsRes = await db.query(
+      `SELECT j.id, j.title, j.salary, j.equity, j.company_handle
+      FROM jobs AS j
+      LEFT JOIN companies AS c
+      ON j.company_handle = c.handle
+      WHERE c.handle = $1`,
+      [handle]
+    )
+    const jobs = jobsRes.rows
+    return {company, jobs};
   }
 
   /** Update company data with `data`.

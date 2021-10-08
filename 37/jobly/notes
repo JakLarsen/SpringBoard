@@ -31,7 +31,7 @@ TODO:
 
  * DONE Delete jobs route
  * DONE Delete jobs model
- * Delete jobs tests for both
+ * DONE Delete jobs tests for both
  * 
  * -Show jobs for a company in GET /companies/:handle now
  * Update model ^
