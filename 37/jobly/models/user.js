@@ -128,12 +128,12 @@ class User {
   static async get(username) {
     const userRes = await db.query(
           `SELECT username,
-                  first_name AS "firstName",
-                  last_name AS "lastName",
-                  email,
-                  is_admin AS "isAdmin"
-           FROM users
-           WHERE username = $1`,
+            first_name AS "firstName",
+            last_name AS "lastName",
+            email,
+            is_admin AS "isAdmin"
+          FROM users
+          WHERE username = $1`,
         [username],
     );
 
@@ -141,7 +141,20 @@ class User {
 
     if (!user) throw new NotFoundError(`No user: ${username}`);
 
-    return user;
+    let jobs = await db.query(
+      `SELECT j.id, j.title, j.salary, j.equity, j.company_handle
+      FROM jobs AS j
+      JOIN applications AS a
+      ON j.id = a.job_id
+      JOIN users AS u
+      ON u.username = a.username
+      WHERE u.username = $1`,
+      [username]
+      )
+    
+      jobs = jobs.rows
+
+    return {user, jobs};
   }
 
   /** Update user data with `data`.
@@ -206,6 +219,18 @@ class User {
 
     if (!user) throw new NotFoundError(`No user: ${username}`);
   }
+
+  static async apply(username, id){
+    let result = db.query(
+      `INSERT INTO applications (username, job_id)
+      VALUES($1, $2)`,
+      [username, id]
+    )
+    return result.rows
+  }
+
+
+
 }
 
 

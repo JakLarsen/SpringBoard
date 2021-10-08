@@ -68,14 +68,14 @@ router.get("/",  async function (req, res, next) {
  *
  * Returns { username, firstName, lastName, isAdmin }
  *
- * Authorization required: login
+ * Authorization required: Login
  **/
 
 // ensureLoggedIn, ensureIsAdminOrUser,
 router.get("/:username", async function (req, res, next) {
   try {
     const user = await User.get(req.params.username);
-    return res.json({ user });
+    return res.json( user );
   } catch (err) {
     return next(err);
   }
@@ -123,6 +123,26 @@ router.delete("/:username", async function (req, res, next) {
     return next(err);
   }
 });
+
+/**
+ * POST /users/:username/jobs/:id
+ * 
+ * Connects a user with a jobapplication
+ * 
+ * Authorization: Login
+ */
+router.post('/:username/jobs/:id', async function (req,res,next){
+  try{
+    const {username, id} = req.params
+    User.apply(username, id)
+    return res.json({applied: {username: username, id: id}})
+  }
+  catch(e){
+    return next(e)
+  }
+})
+
+
 
 
 module.exports = router;

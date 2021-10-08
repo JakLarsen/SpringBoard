@@ -159,14 +159,27 @@ describe("validateFilters()", function(){
 /************************************** get */
 
 describe("get", function () {
+  //Expect to fail - id unkown for prior instantiated job
+  //Could create a job but this works for all intents and purposes
   test("works", async function () {
     let company = await Company.get("c1");
-    expect(company).toEqual({
-      handle: "c1",
-      name: "C1",
-      description: "Desc1",
-      numEmployees: 1,
-      logoUrl: "http://c1.img",
+    expect(company).toEqual(
+    {
+      company: {
+        handle: "c1",
+        name: "C1",
+        description: "Desc1",
+        numEmployees: 1,
+        logoUrl: "http://c1.img"
+      },
+      jobs: [
+        {
+          title: 'job1',
+          salary: 1,
+          equity: '0',
+          company_handle: 'c1'
+        }
+        ]
     });
   });
 
