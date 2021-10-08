@@ -161,34 +161,25 @@ class Job {
         return job;
     }
 
+    /**
+     * DELETE given job by id
+     */
+    static async remove(id){
 
-
-
-
-
-
-
-
-    
-//   /** Delete given company from database; returns undefined.
-//    *
-//    * Throws NotFoundError if company not found.
-//    **/
-
-//   static async remove(handle) {
-//     const result = await db.query(
-//           `DELETE
-//            FROM companies
-//            WHERE handle = $1
-//            RETURNING handle`,
-//         [handle]);
-//     const company = result.rows[0];
-
-//     if (!company) throw new NotFoundError(`No company: ${handle}`);
-//   }
-
+        const result = await db.query(
+            `DELETE
+            FROM jobs
+            WHERE id = $1
+            RETURNING id`,
+            [id]
+        )
+        const job = result.rows[0]
+        if(!job) throw new NotFoundError(`No job with id: ${id}`) 
+    }
 
 }
+
+
 
 
 module.exports = Job;

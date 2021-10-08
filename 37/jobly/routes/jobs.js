@@ -111,26 +111,21 @@ router.patch('/:id', async function(req,res,next){
     }
 })
 
+/**
+ * DELETE '/jobs/id
+ * 
+ * Authorization: Login
+ */
 
-
-
-
-
-
-
-// /** DELETE /[handle]  =>  { deleted: handle }
-//  *
-//  * Authorization: login
-//  */
 // // ensureLoggedIn, ensureIsAdmin,
-// router.delete("/:handle", ensureLoggedIn, async function (req, res, next) {
-//   try {
-//     await Company.remove(req.params.handle);
-//     return res.json({ deleted: req.params.handle });
-//   } catch (err) {
-//     return next(err);
-//   }
-// });
-
+router.delete('/:id', async function(req, res, next){
+    try{
+        await Job.remove(req.params.id)
+        return res.json({deleted: req.params.id})
+    }
+    catch(e){
+        return next(e)
+    }
+})
 
 module.exports = router;

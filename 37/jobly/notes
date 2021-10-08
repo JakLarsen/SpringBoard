@@ -27,8 +27,8 @@ TODO:
 10/8
  * DONE Patch jobs route
  * DONE Patch jobs model 
- * Patch jobs tests for both
- 
+ * DONE Patch jobs tests for both
+
  * Delete jobs route
  * Delete jobs model
  * Delete jobs tests for both
