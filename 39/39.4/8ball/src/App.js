@@ -1,4 +1,6 @@
 import Ball from './components/Ball'
+import Square from './components/Square';
+
 
 
 
@@ -11,6 +13,8 @@ function App() {
 
 
     <Ball/>
+
+    <Square width={5} height={5}/>
 
 
 

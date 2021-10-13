@@ -101,7 +101,7 @@ router.get("/:handle", async function (req, res, next) {
  */
 
 // ensureLoggedIn, ensureIsAdmin,
-router.patch("/:handle", async function (req, res, next) {
+router.patch("/:handle", ensureLoggedIn, async function (req, res, next) {
   try {
     const validator = jsonschema.validate(req.body, companyUpdateSchema);
     if (!validator.valid) {

@@ -1,20 +1,30 @@
 import './App.css';
-import {add, mult} from './helpers'
-import catsData, {meow} from './cats'
-import items from './items'
-import skydivingItems from './skydivingItems';
-import ShoppingCart from './ShoppingCart';
-import userProfiles from './userProfiles';
-import Profile from './Profile';
-import ProfilePage from './ProfilePage'
+// import {add, mult} from './components/helpers'
+import items from './components/component-data/items'
+import skydivingItems from './components/component-data/skydivingItems';
+import ShoppingCart from './components/ShoppingCart';
+import logo from './static/img/logo.svg'
+import "./static/css/App.css"
+import Alert from './components/Alert';
+import userProfiles from './components/component-data/userProfiles';
+import Profile from './components/Profile';
+import ProfilePage from './components/ProfilePage';
 
 function App() {
-  console.log(userProfiles[0])
+  let testProfile = userProfiles[0]
+  console.log(testProfile.username)
   return (
     <div>
-      {/* <ShoppingCart items = {items}/> */}
+      <img src={logo} alt="logo"/>
+      <ShoppingCart items = {items}/>
       <ShoppingCart items = {skydivingItems}/>
-      <ProfilePage profiles={userProfiles}/>
+      <ProfilePage profiles = {userProfiles}/>
+      <Alert variant="success">
+        <h1>Welcome back!</h1>
+      </Alert>
+      <Alert variant="failure">
+        <h1>OH NO!</h1>
+      </Alert>
 
     </div>
   )

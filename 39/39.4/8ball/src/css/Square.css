@@ -1,0 +1,11 @@
+.square-container{
+    background-color: blueviolet;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 10rem;
+    width: 10rem;
+
+}
