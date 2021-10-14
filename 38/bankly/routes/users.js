@@ -14,7 +14,7 @@ const { authUser, requireLogin, requireAdmin } = require('../middleware/auth');
  *    {users: [{username, first_name, last_name}, ...]}
  *
  */
-
+//  authUser, requireLogin,
 router.get('/', authUser, requireLogin, async function(req, res, next) {
   try {
     let users = await User.getAll();
@@ -34,12 +34,7 @@ router.get('/', authUser, requireLogin, async function(req, res, next) {
  * If user cannot be found, return a 404 err.
  *
  */
-
-router.get('/:username', authUser, requireLogin, async function(
-  req,
-  res,
-  next
-) {
+router.get('/:username', authUser, requireLogin, async function(req,res,next) {
   try {
     let user = await User.get(req.params.username);
     return res.json({ user });
@@ -63,11 +58,8 @@ router.get('/:username', authUser, requireLogin, async function(
  *
  */
 
-router.patch('/:username', authUser, requireLogin, requireAdmin, async function(
-  req,
-  res,
-  next
-) {
+router.patch('/:username', authUser, requireLogin, async function(req,res,next) {
+  console.log(req.curr_admin, req.curr_username, req.params.username)
   try {
     if (!req.curr_admin && req.curr_username !== req.params.username) {
       throw new ExpressError('Only  that user or admin can edit a user.', 401);
@@ -75,7 +67,9 @@ router.patch('/:username', authUser, requireLogin, requireAdmin, async function(
 
     // get fields to change; remove token so we don't try to change it
     let fields = { ...req.body };
-    delete fields._token;
+    delete fields._token
+    delete fields.username
+    delete fields.password
 
     let user = await User.update(req.params.username, fields);
     return res.json({ user });
@@ -94,11 +88,7 @@ router.patch('/:username', authUser, requireLogin, requireAdmin, async function(
  * If user cannot be found, return a 404 err.
  */
 
-router.delete('/:username', authUser, requireAdmin, async function(
-  req,
-  res,
-  next
-) {
+router.delete('/:username', authUser, requireAdmin, async function(req,res,next) {
   try {
     User.delete(req.params.username);
     return res.json({ message: 'deleted' });
