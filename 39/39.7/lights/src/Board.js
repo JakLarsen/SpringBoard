@@ -15,7 +15,7 @@ const Board = () =>{
 
         lightCells.map(LCRow=>{
             LCRow.map(LC=>{
-                if(LC.val == 0){
+                if(LC.val == 1){
                     result = false
                 }
             })
@@ -31,27 +31,32 @@ const Board = () =>{
                 console.log('updateSurrounding()')
             if (x >= 0 && x < 5 && y >= 0 && y < 5) {
                 console.log('Valid IDX')
+
                 let boardCopyTarget = boardCopy[x][y]
                 let boardRealTarget = lightCells[x][y]
+
                 console.log('CHANGING AT: ', x,y)
                 console.log('Copy Target PRE Changes: ', boardCopyTarget.val)
                 console.log('Real Target PRE Changes: ', boardRealTarget.val)
+
                 if(boardCopyTarget.val == 1){
                     boardCopyTarget.val = 0
                     console.log('Copy Target Change TO Dark and 0: ', boardCopyTarget.val)
                     console.log('Real Target Change TO Dark and 0: ', boardRealTarget.val)
                 }
+                
                 else{
                     boardCopyTarget.val = 1
                     console.log('Copy Target Change TO LIGHT and 1: ', boardCopyTarget.val)
                     console.log('Real Target Change TO LIGHT and 1: ', boardRealTarget.val)
                 }
+                
                 console.log('Copy Target POST Changes: ', boardCopyTarget.val)
                 console.log('Real Target POST Changes: ', boardRealTarget.val)
             }
         }
 
-            let boardCopy = lightCells.map(LCRow => [...LCRow]);
+            let boardCopy = lightCells.map(LCRow => LCRow.map(obj => {return {...obj}}));
 
             updateSurrounding(x, y, boardCopy);
             updateSurrounding(x, y - 1, boardCopy);
@@ -81,7 +86,6 @@ const Board = () =>{
                         <LightCell 
                             changeLights={()=>changeLights(LC.x, LC.y)}
                             val={LC.val}
-                            lit={LC.val}
                             x={LC.x}
                             y={LC.y}
                         />
