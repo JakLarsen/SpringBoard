@@ -1,0 +1,11 @@
+.LightCell{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5rem;
+    height: 5rem;
+    background-color: #272727;
+    color: #FFF;
+    margin: 0.5rem;
+}
