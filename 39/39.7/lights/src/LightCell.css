@@ -9,3 +9,11 @@
     color: #FFF;
     margin: 0.5rem;
 }
+.Dark{
+    background-color: #272727;
+    color: #FFF;
+}
+.Light{
+    background-color: rgb(240, 233, 137);
+    color: #272727;
+}

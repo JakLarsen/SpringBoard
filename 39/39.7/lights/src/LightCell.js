@@ -5,11 +5,14 @@ import './LightCell.css'
 
 
 
-
-const LightCell = ({number}) => {
+const LightCell = ({changeLights, val, lit, x, y}) => {
+    const classes = `LightCell ${val ? "Light" : "Dark"}`
     return(
-        <div className="LightCell">
-            {number}
+        <div 
+            onClick={changeLights}
+            className={`${classes}`}
+        >
+            {val}
         </div>
     )
 }
