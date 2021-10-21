@@ -5,7 +5,7 @@ import './LightCell.css'
 
 
 
-const LightCell = ({changeLights, val, lit, x, y}) => {
+const LightCell = ({changeLights, val, x, y}) => {
     const classes = `LightCell ${val ? "Light" : "Dark"}`
     return(
         <div 
