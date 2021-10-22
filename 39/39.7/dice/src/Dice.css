@@ -1,0 +1,17 @@
+.Dice{
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+.Dice-con{
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.Dice-roll-btn{
+    width: 3rem;
+}

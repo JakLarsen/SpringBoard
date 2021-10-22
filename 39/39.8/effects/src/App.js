@@ -1,13 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
-import UserForm from './UserForm';
-import ShoppingList from './ShoppingList';
+import Timer from './Timer';
+import Counter from './Counter';
 
 function App() {
   return (
     <div className="App">
-      <ShoppingList/>
-      <UserForm/>
+      <Timer/>
+      <Counter/>
     </div>
   );
 }

@@ -1,0 +1,14 @@
+.Die{
+    background-color: blueviolet;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    color: #FFF;
+    width: 3rem;
+    height: 3rem;
+    font-weight: bold;
+    font-size: 1.5rem;;
+    margin: 1rem;
+}
