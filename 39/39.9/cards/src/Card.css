@@ -1,0 +1,12 @@
+.Card{
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    background-color: blueviolet;
+    justify-content: center;
+    align-items: center;
+    height: 10rem;
+    width: 6.5rem;
+    border-radius: 5px;
+    margin: 1rem;
+}
