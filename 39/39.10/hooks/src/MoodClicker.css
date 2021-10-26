@@ -1,0 +1,21 @@
+.MoodClicker{
+    height: 100vh;
+    width: 100vw;
+}
+
+.MoodClicker-dark{
+    background-color: #272727;
+    color: #FFF;
+}
+.MoodClicker-dark button{
+    background-color: lightblue;
+}
+
+.MoodClicker-light{
+    background-color: #FFF;
+    color: #272727;
+}
+.MoodClicker-light button {
+    background-color: darkslateblue;
+    color: #FFF;
+}
