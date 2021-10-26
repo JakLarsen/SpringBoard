@@ -1,18 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
+import { useFlip } from "./hooks";
 import backOfCard from "./back.png";
-import "./PlayingCard.css"
-import useFlip from "./hooks/useFlip";
+import "./PlayingCard.css";
 
 /* Renders a single playing card. */
 function PlayingCard({ front, back = backOfCard }) {
-  
-  const [isFlipped, toggleFlip] = useFlip()
-
+  const [isFacingUp, flip] = useFlip();
   return (
     <img
-      src={isFlipped ? front : back}
+      src={isFacingUp ? front : back}
       alt="playing card"
-      onClick={toggleFlip}
+      onClick={flip}
       className="PlayingCard Card"
     />
   );
