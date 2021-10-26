@@ -14,7 +14,6 @@ const ProfileSearchForm = ({search}) => {
         setTerm("")
     }
 
-
     return (
         <form onSubmit={handleSubmit}>
             <label htmlFor="search">Search: </label>

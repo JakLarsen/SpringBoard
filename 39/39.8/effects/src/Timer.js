@@ -8,9 +8,11 @@ const Timer = () => {
 
     //Will render once after first render if we use ,[] for dependencies
     useEffect(()=>{
-            setInterval(()=>{
+        const id = setInterval(()=>{
             setSeconds(seconds => seconds + 1)
         }, 1000)
+
+        return () => clearInterval(id)
     }, [])
     
 

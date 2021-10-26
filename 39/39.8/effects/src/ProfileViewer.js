@@ -14,6 +14,7 @@ const ProfileViewer = ({profileName = 'elie', color="purple"}) => {
             setData(res.data.name)
         }
         loadProfile();
+        return ()=> console.log('Cleaning up')
     },[url]);  
 
     const search = (term) => {
