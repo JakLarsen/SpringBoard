@@ -12,6 +12,7 @@ function App() {
   return (
 
     <div className="App">
+      
       <h1>Dog Finder 17.0</h1>
 
       <BrowserRouter>
