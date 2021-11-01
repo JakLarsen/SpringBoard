@@ -37,8 +37,6 @@ class Counter extends React.Component{
         this.setState({count: this.state.count-1})
     }
 
-
-
     render(){
         const {color} = this.props
         const {count} = this.state
