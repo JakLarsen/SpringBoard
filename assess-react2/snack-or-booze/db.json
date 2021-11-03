@@ -1,4 +1,27 @@
+
+
 {
+
+  "order":[
+    {
+      "id": "martini",
+      "itemType": "drinks",
+      "name": "Martini",
+      "description": "An ice-cold, refreshing classic.",
+      "recipe": "Mix 3 parts vodka & 1 part dry vermouth.",
+      "serve": "Serve very cold, straight up."
+    },
+    {
+      "id": "nachos",
+      "itemType": "snacks",
+      "name": "Nachos",
+      "description": "An American classic!",
+      "recipe": "Cover expensive, organic tortilla chips with Cheez Whiz.",
+      "serve": "Serve in a hand-thrown ceramic bowl, garnished with canned black olives"
+    }
+
+  ],
+
   "drinks": [
     {
       "id": "martini",
@@ -29,6 +52,7 @@
       "serve": "Immediately."
     }
   ],
+
   "snacks": [
     {
       "id": "nachos",

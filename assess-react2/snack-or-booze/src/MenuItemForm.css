@@ -1,0 +1,5 @@
+.menu-item-form{
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+}

@@ -1,0 +1,8 @@
+
+
+
+
+- Home page unnecessarily receiving snack props
+    - Solved - removed unnecessary data
+- 404 showing at all times
+    - Solved - created end route as catch all

@@ -1,0 +1,29 @@
+
+
+
+
+- ADD DRINK TO MENU
+- ADD SNACK TO MENU
+- Add item to order
+- Remove item from order
+
+- Add keys
+- Add full tests
+- Add Documentation
+- Add README
+
+- DONE - Order so far setup
+- DONE - Go back on snack or drink
+- DONE - Add bug documentation
+- DONE - GET to /drinks
+- DONE - GET to /snacks 
+- DONE - GET to /drinks/id 
+- DONE - GET to /snacks/id 
+- DONE - GET to /order (start an order)
+- DONE - Order Page
+- DONE - 404 done correctly
+- DONE - Make MENU work for either snacks or drinks 
+- DONE - MOVED ROUTES INTO OWN COMPONENT
+- DONE - FIXED CSS TRANSFERS
+
+
