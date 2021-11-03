@@ -3,6 +3,10 @@ import "./NavBar.css";
 import { NavLink } from "react-router-dom";
 import { Navbar, Nav, NavItem } from "reactstrap";
 
+
+/**
+ * Simple NavBar links to the snacks, drinks, or current order
+ */
 function NavBar() {
   return (
     <div>

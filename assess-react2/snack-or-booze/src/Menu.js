@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Menu.css";
+import MenuItemForm from "./MenuItemForm";
 import {
   Card,
   CardBody,
@@ -9,9 +10,13 @@ import {
   ListGroup,
   ListGroupItem
 } from "reactstrap";
-import MenuItemForm from "./MenuItemForm";
 
-function Menu({ items , title }) {
+
+/**
+ * Menu display for either SnackItem components or DrinkItem components
+ * We grab itemType as a toggle for whether to make a Snack menu or Drink menu
+ */
+function Menu({ items , title, addSnack, addDrink }) {
 
   let itemType = title.toLowerCase()
 
@@ -30,6 +35,8 @@ function Menu({ items , title }) {
               <CardText>
                 {itemDesc}
               </CardText>
+
+              {/* Display each item with a link to their MenuItem component display view */}
               <ListGroup>
                 {items.map(item => (
                   <Link to={`/${itemType}/${item.id}`} key={item.id}>
@@ -37,11 +44,12 @@ function Menu({ items , title }) {
                   </Link>
                 ))}
               </ListGroup>
+
             </CardBody>
           </Card>
         </section>
 
-        <MenuItemForm title={title}/>
+        <MenuItemForm title={title} addSnack={addSnack} addDrink={addDrink}/>
         
     </div>
     

@@ -4,6 +4,9 @@ import './App.css'
 import NavBar from "./NavBar";
 import Routes from './Routes'
 
+/**
+ * Main App structure
+ */
 function App() {
 
   return (

@@ -11,7 +11,12 @@ import {
   ListGroup,
 } from "reactstrap";
 
-function OrderMenu({ items , title }) {
+
+/**
+ * Basic Menu display, showing the snacks or drinks (Menu)
+ * [order, setOrder, addToOrder removeFromOrder] state is managed in Routes.js
+ */
+function OrderMenu({ items , title, addToOrder }) {
 
   let itemType = title.toLowerCase()
 
@@ -36,7 +41,7 @@ function OrderMenu({ items , title }) {
                   <Link to={`/${itemType}/${item.id}`} key={item.id}>
                     <span className="order-item-name">{item.name}</span>
                   </Link>
-                  <button className="order-add-btn">+</button>
+                  <button onClick={()=>addToOrder(item)} className="order-add-btn">+</button>
                 </div>
               ))}
           </ListGroup>

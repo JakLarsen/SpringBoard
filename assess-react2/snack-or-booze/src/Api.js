@@ -11,6 +11,9 @@ const BASE_API_URL = "http://localhost:5000";
 
 class SnackOrBoozeApi {
 
+  /**
+   * GET snacks, drinks, or order from json-server pseudo-API
+   */
   static async getSnacks() {
     const result = await axios.get(`${BASE_API_URL}/snacks`);
     return result.data;
@@ -23,6 +26,16 @@ class SnackOrBoozeApi {
     const result = await axios.get(`${BASE_API_URL}/order`);
     return result.data;
   }
+
+  /**
+   * POST a new snack or drink to json-server pseudo-API
+   */
+  // static async postSnack(snack){
+  //   await axios.post(`${BASE_API_URL}/snacks`)
+  // }
+  // static async postDrink(drink){
+  //   await axios.post(`${BASE_API_URL}/drinks`)
+  // }
 
 }
 

@@ -2,16 +2,15 @@
 
 
 
-- ADD DRINK TO MENU
-- ADD SNACK TO MENU
-- Add item to order
-- Remove item from order
 
-- Add keys
 - Add full tests
-- Add Documentation
-- Add README
 
+- DONE - Add README
+- DONE - ADD documentation
+- DONE - Remove item from order
+- DONE - ADD DRINK TO MENU
+- DONE - ADD SNACK TO MENU
+- DONE - Add item to order
 - DONE - Order so far setup
 - DONE - Go back on snack or drink
 - DONE - Add bug documentation

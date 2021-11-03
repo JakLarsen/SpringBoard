@@ -10,21 +10,21 @@ import {
 
 
 
+/**
+ * Basic Order display, showing the snacks or drinks (MenuItems) you've added to it
+ * [order, setOrder, addToOrder removeFromOrder] state is managed in Routes.js
+ */
 
-
-
-
-
-function Order({ items , title }) {
+function Order({ items , title, removeFromOrder }) {
 
   return (
     <section className="order-section col-md-8">
       <Card>
         <CardBody className="text-center">
           <CardTitle>
-            <h3 className="font-weight-bold">
+            <span className="font-weight-bold">
               Your order so far:
-            </h3>
+            </span>
           </CardTitle>
           <ListGroup>
               {items.map(item => (
@@ -32,7 +32,7 @@ function Order({ items , title }) {
                   <Link to={`/${item.itemType}/${item.id}`} key={item.id}>
                     <span className="order-item-name">{item.name}</span>
                   </Link>
-                  <button className="order-remove-btn">-</button>
+                  <button onClick={()=>removeFromOrder(item.id)} className="order-remove-btn">-</button>
                 </div>
               ))}
           </ListGroup>
