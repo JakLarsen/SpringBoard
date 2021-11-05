@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Routes.css";
+import "./css/Routes.css";
 import Home from "./Home";
 import SnackOrBoozeApi from "./Api";
 import { Route, Switch} from "react-router-dom";

@@ -1,6 +1,6 @@
 import React from "react";
-import "./NavBar.css";
-import { NavLink } from "react-router-dom";
+import "./css/NavBar.css";
+import {NavLink} from "react-router-dom";
 import { Navbar, Nav, NavItem } from "reactstrap";
 
 

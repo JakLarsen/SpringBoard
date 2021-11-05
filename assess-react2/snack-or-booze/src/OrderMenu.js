@@ -1,8 +1,8 @@
 import React from "react";
-import './Order.css'
+import './css/Order.css'
 import { Link } from "react-router-dom";
 
-import "./Menu.css";
+import "./css/Menu.css";
 import {
   Card,
   CardBody,

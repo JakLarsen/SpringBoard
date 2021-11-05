@@ -4,6 +4,24 @@
 
 
 - Add full tests
+    - Smoke tests
+        - DONE - App.js renders
+        - DONE - Home.js renders
+        - DONE - Menu.js renders
+        - DONE - MenuItem.js renders
+        - DONE - MenuItemForm.js renders
+        - DONE - NavBar.js renders
+        - NotFound.js renders
+        - Order.js renders
+        - OrderMenu.js renders
+        - Routes.js renders
+    - Add SnackItem test
+    - Add DrinkItem test
+    - Add to order test
+    - Remove from order test
+    -Routing tests?
+    
+
 
 - DONE - Add README
 - DONE - ADD documentation

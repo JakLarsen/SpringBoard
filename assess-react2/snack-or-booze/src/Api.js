@@ -1,4 +1,5 @@
 import axios from "axios";
+import regeneratorRuntime from "regenerator-runtime";
 
 const BASE_API_URL = "http://localhost:5000";
 
