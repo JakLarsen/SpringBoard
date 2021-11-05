@@ -13,8 +13,8 @@ import './css/MenuItemForm.css'
  * Form to add a snack or drink to the menu
  * (Only using State currently, not our pseudo-database)
  */
-const MenuItemForm = ({title, addSnack, addDrink}) => {
 
+const MenuItemForm = ({title, addSnack, addDrink}) => {
 
     const INITIAL_STATE = {
         id: "",
@@ -28,8 +28,10 @@ const MenuItemForm = ({title, addSnack, addDrink}) => {
     const [formData, setFormData] = useState(INITIAL_STATE)
 
     //A toggle to see if we're adding a snack or drink
-    let addFunctionToUse = title === 'Snacks' ? addSnack : addDrink
-    
+    let addFunctionToUse = (
+        title === 'Snacks' ? addSnack : addDrink
+    )
+
     /**
      * onChange controlled-handler for all MenuItemForm input fields
      */
@@ -52,6 +54,7 @@ const MenuItemForm = ({title, addSnack, addDrink}) => {
         e.preventDefault();
         console.log('SUBMITTED')
         //Could add to database as well, not just state
+        //For some reason the fireEvent click doesn't think addFunctionToUse is a function
         addFunctionToUse({...formData})
         setFormData(INITIAL_STATE)
     }

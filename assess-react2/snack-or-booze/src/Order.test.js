@@ -5,16 +5,19 @@ import {removeFromOrder} from './Routes'
 import { BrowserRouter, Route } from "react-router-dom";
 import ourTestData from './testData'
 
+
+let ourRenderView = (
+    <BrowserRouter>
+        <Route exact path="/order">
+            <Order items={ourTestData.order} title="Order" removeFromOrder={removeFromOrder}/>
+        </Route>
+    </BrowserRouter>
+)
+
+
 test("renders without crashing", ()=>{
     
-    render(
-        <BrowserRouter>
-            <Route exact path="/order">
-                <Order items={ourTestData.order} title="Order" removeFromOrder={removeFromOrder}/>
-            </Route>
-        </BrowserRouter>
-       
-    )
+    render(ourRenderView)
 })
 
 it('Matches snapshot', function(){
