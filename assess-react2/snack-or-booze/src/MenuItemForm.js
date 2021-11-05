@@ -45,6 +45,9 @@ const MenuItemForm = ({title, addSnack, addDrink}) => {
         ))
     }
 
+    /**
+     * Basic form validation to make sure all fields are not empty
+     */
     const validateForm = (formDataObj) => {
         // console.log(!formData.itemType)
         // console.log(!formData.name)
