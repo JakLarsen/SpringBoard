@@ -45,6 +45,27 @@ const MenuItemForm = ({title, addSnack, addDrink}) => {
         ))
     }
 
+    const validateForm = (formDataObj) => {
+        // console.log(!formData.itemType)
+        // console.log(!formData.name)
+        // console.log(!formData.id)
+        // console.log(!formData.description)
+        // console.log(!formData.recipe)
+        // console.log(!formData.serve)
+        if (!formDataObj.itemType ||
+            !formDataObj.name ||
+            !formDataObj.id ||
+            !formDataObj.description ||
+            !formDataObj.recipe ||
+            !formDataObj.serve){
+                alert("Please fill out all form values")
+                return false
+            }
+        else{
+            return true
+        }
+    }
+
     /**
      * onSubmit handler for our form
      * Uses addSnack or addDrink as addFunctionToUse based which type
@@ -55,7 +76,10 @@ const MenuItemForm = ({title, addSnack, addDrink}) => {
         console.log('SUBMITTED')
         //Could add to database as well, not just state
         //For some reason the fireEvent click doesn't think addFunctionToUse is a function
-        addFunctionToUse({...formData})
+        console.log({...formData})
+        if (validateForm({...formData})){
+            addFunctionToUse({...formData})
+        }
         setFormData(INITIAL_STATE)
     }
 
