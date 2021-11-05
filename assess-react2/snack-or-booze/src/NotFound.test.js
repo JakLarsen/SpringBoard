@@ -9,3 +9,10 @@ test("renders without crashing", ()=>{
     <NotFound/>
   )
 })
+
+it('Matches snapshot', function(){
+  const {asFragment} = render(
+    <NotFound/> 
+  )
+  expect(asFragment()).toMatchSnapshot()
+});

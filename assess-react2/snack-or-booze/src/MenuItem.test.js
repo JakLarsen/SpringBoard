@@ -16,3 +16,14 @@ test("renders without crashing", ()=>{
         </BrowserRouter>
     )
 })
+
+it('Matches snapshot', function(){
+    const {asFragment} = render(
+        <BrowserRouter>
+            <Route path="/snacks/:id">
+                <MenuItem items={ourTestData.snacks} cantFind="/snacks" />
+            </Route>
+        </BrowserRouter>
+    )
+    expect(asFragment()).toMatchSnapshot()
+});

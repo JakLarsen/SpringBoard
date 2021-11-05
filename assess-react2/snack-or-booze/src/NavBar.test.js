@@ -13,3 +13,12 @@ test("renders without crashing", ()=>{
         </BrowserRouter>   
     )
 })
+
+it('Matches snapshot', function(){
+    const {asFragment} = render(
+        <BrowserRouter>
+            <NavBar/>
+        </BrowserRouter>   
+    )
+    expect(asFragment()).toMatchSnapshot()
+});

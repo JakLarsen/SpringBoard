@@ -16,3 +16,14 @@ test("renders without crashing", ()=>{
        
     )
 })
+
+it('Matches snapshot', function(){
+    const {asFragment} = render(
+        <BrowserRouter>
+        <Route exact path="/order">
+            <Order items={ourTestData.order} title="Order" removeFromOrder={removeFromOrder}/>
+        </Route>
+    </BrowserRouter> 
+    )
+    expect(asFragment()).toMatchSnapshot()
+});

@@ -11,3 +11,10 @@ test("renders without crashing", ()=>{
         <MenuItemForm title={title} addSnack={addSnack} addDrink={addDrink}/>
     )
 })
+
+it('Matches snapshot', function(){
+    const {asFragment} = render(
+        <MenuItemForm title={title} addSnack={addSnack} addDrink={addDrink}/>
+    )
+    expect(asFragment()).toMatchSnapshot()
+});

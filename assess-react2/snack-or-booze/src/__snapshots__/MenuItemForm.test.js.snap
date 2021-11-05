@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Matches snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <div
+      class="card"
+    >
+      <div
+        class="card-body"
+      >
+        <h5
+          class="font-weight-bold text-center card-title"
+        >
+          Add Snacks Form
+        </h5>
+        <p
+          class="card-text"
+        >
+          Add a new item to the menu!
+        </p>
+        <form
+          class="menu-item-form"
+        >
+          <label
+            for="item-type"
+          >
+            Category: 
+          </label>
+          <input
+            id="itemType"
+            name="itemType"
+            placeholder="snacks or drinks"
+            type="text"
+            value=""
+          />
+          <label
+            for="name"
+          >
+            Name:
+          </label>
+          <input
+            id="name"
+            name="name"
+            placeholder="item name"
+            value=""
+          />
+          <label
+            for="id"
+          >
+            ID:
+          </label>
+          <input
+            id="id"
+            name="id"
+            placeholder="item id"
+            value=""
+          />
+          <label
+            for="description"
+          >
+            Description:
+          </label>
+          <input
+            id="description"
+            name="description"
+            placeholder="A delicious snack"
+            value=""
+          />
+          <label
+            for="recipe"
+          >
+            Recipe:
+          </label>
+          <input
+            id="recipe"
+            name="recipe"
+            placeholder="cheese whizz and potatoes"
+            value=""
+          />
+          <label
+            for="serve"
+          >
+            Serve:
+          </label>
+          <input
+            id="serve"
+            name="serve"
+            placeholder="ice cold"
+            value=""
+          />
+          <button>
+            Add item
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -10,7 +10,16 @@
     - Remove from order test
     -Routing tests?
     
-
+- DONE - Snapshot tests
+    - DONE - App.js renders
+    - DONE - Home.js renders
+    - DONE - Menu.js renders
+    - DONE - MenuItem.js renders
+    - DONE - MenuItemForm.js renders
+    - DONE - NavBar.js renders
+    - DONE - NotFound.js renders
+    - DONE - Order.js renders
+    - DONE - OrderMenu.js renders
 - DONE - Smoke tests
     - DONE - App.js renders
     - DONE - Home.js renders
