@@ -1,7 +1,7 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import Menu from './Menu'
-import {addSnack} from './Routes'
+import { render} from '@testing-library/react';
+import OrderMenu from './OrderMenu'
+import {addToOrder} from './Routes'
 import { BrowserRouter, Route } from "react-router-dom";
 import ourTestData from './testData'
 
@@ -10,7 +10,7 @@ test("renders without crashing", ()=>{
     render(
         <BrowserRouter>
             <Route exact path="/snacks">
-                <Menu items={ourTestData.snacks} title="Snacks" addSnack={addSnack}/>
+                <OrderMenu items={ourTestData.snacks} title="Snacks" addToOrder={addToOrder} />
             </Route>
         </BrowserRouter>
        

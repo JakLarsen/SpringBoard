@@ -4,17 +4,6 @@
 
 
 - Add full tests
-    - Smoke tests
-        - DONE - App.js renders
-        - DONE - Home.js renders
-        - DONE - Menu.js renders
-        - DONE - MenuItem.js renders
-        - DONE - MenuItemForm.js renders
-        - DONE - NavBar.js renders
-        - NotFound.js renders
-        - Order.js renders
-        - OrderMenu.js renders
-        - Routes.js renders
     - Add SnackItem test
     - Add DrinkItem test
     - Add to order test
@@ -22,7 +11,17 @@
     -Routing tests?
     
 
-
+- DONE - Smoke tests
+    - DONE - App.js renders
+    - DONE - Home.js renders
+    - DONE - Menu.js renders
+    - DONE - MenuItem.js renders
+    - DONE - MenuItemForm.js renders
+    - DONE - NavBar.js renders
+    - DONE - NotFound.js renders
+    - DONE - Order.js renders
+    - DONE - OrderMenu.js renders
+    - DONE - Routes.js renders
 - DONE - Add README
 - DONE - ADD documentation
 - DONE - Remove item from order
