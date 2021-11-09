@@ -1,0 +1,13 @@
+
+
+.App{
+  /* background-color: rgb(248, 235, 255); */
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  /* justify-content: center;
+  align-items: center; */
+  width: 100vw;
+  height: 100vh;
+  /* margin: 0 2rem; */
+}

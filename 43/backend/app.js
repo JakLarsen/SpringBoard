@@ -27,6 +27,10 @@ app.use("/companies", companiesRoutes);
 app.use("/users", usersRoutes);
 app.use("/jobs", jobsRoutes);
 
+/**Just reassurance that we're hitting our base endpoint*/
+app.get('/', function(req,res,next){
+  return res.json('Hello, and welcome to Jobly!')
+})
 
 /** Handle 404 errors -- this matches everything */
 app.use(function (req, res, next) {

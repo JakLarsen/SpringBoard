@@ -1,0 +1,43 @@
+
+
+
+.Signup{
+    background-color: rgb(255, 207, 235); 
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    height: 28rem;
+    width: 18rem;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+}
+
+.Signup-form-title{
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.Signup-form{
+    /* background-color: papayawhip; */
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.label{
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #272727;
+}
+
+.input{
+    border-style: none;
+    color: #272727;
+    height: 1.5rem;
+    justify-content: center;
+    margin: 0.25rem 0 0.5rem;
+    border-radius: 2px;
+}

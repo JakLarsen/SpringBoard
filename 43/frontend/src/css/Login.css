@@ -1,0 +1,43 @@
+
+
+
+.Login{
+    background-color: rgb(255, 226, 176); 
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    height: 18rem;
+    width: 20rem;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+}
+
+.Login-form-title{
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.Login-form{
+    /* background-color: papayawhip; */
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.label{
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #272727;
+}
+
+.input{
+    border-style: none;
+    color: #272727;
+    height: 1.5rem;
+    justify-content: center;
+    margin: 0.25rem 0 0.5rem;
+    border-radius: 2px;
+}
