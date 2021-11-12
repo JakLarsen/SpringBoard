@@ -7,6 +7,7 @@ import Welcome from "./routes/Welcome";
 import Login from "./routes/Login";
 import Signup from "./routes/Signup";
 import Companies from "./routes/Companies";
+import Jobs from './routes/Jobs'
 
 
 
@@ -19,8 +20,8 @@ const RouteHandler = () => {
                 <Route exact path="/welcome" element={<Welcome/>}/>
                 <Route exact path="/login" element={<Login/>}/>
                 <Route exact path="/signup" element={<Signup/>}/>
-
                 <Route exact path="/companies" element={<Companies/>}/>
+                <Route exact path="/jobs" element={<Jobs/>}/>
             </Routes>
         </div>
     )

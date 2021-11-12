@@ -14,6 +14,9 @@ const Navbar = () => {
                 <NavLink exact to="/companies" className="nav-items">
                     Companies
                 </NavLink>
+                <NavLink exact to="/jobs" className="nav-items">
+                    Jobs
+                </NavLink>
                 <NavLink exact to="/login" className="nav-items">
                     Login
                 </NavLink>
