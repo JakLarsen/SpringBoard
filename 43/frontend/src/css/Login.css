@@ -2,22 +2,24 @@
 
 
 .Login{
-    background-color: rgb(255, 226, 176); 
+    background-color: rgb(44, 194, 192);
+    color: #FFF;
     position: relative;
     display: flex;
     flex-flow: column nowrap;
-    height: 18rem;
-    width: 20rem;
+    height: 17rem;
+    width: 17rem;
     align-self: center;
     justify-content: center;
     align-items: center;
-    border-radius: 3px;
+    border-radius: 5px;
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.2);
 }
 
 .Login-form-title{
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     font-weight: 600;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;    
 }
 
 .Login-form{
@@ -27,17 +29,37 @@
     flex-flow: column nowrap;
 }
 
-.label{
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: #272727;
+.Login-form-label{
+    color: #FFF;
+    font-size: 1.2rem;
+    font-weight: 600;
 }
 
-.input{
+.Login-form-input{
     border-style: none;
-    color: #272727;
     height: 1.5rem;
     justify-content: center;
     margin: 0.25rem 0 0.5rem;
     border-radius: 2px;
+}
+
+.Login-submit-btn{
+    background-color: rgb(212, 255, 247); 
+    color: #272727;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    width: 5rem;
+    height: 2.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0.5rem 0 0.5rem 0;
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.3);
+}
+
+.Login-submit-btn:hover{
+    cursor: pointer;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
 }

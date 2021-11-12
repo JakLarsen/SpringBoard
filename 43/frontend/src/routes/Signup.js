@@ -20,6 +20,7 @@ const Signup = () => {
                     <input className="input" type="text" placeholder="What is your last name"/>
                 <label className="label">Email: </label>
                     <input className="input" type="text" placeholder="Please enter an email"/>
+                <div className="submit-btn">Submit</div>
             </form>
         </div>
     )

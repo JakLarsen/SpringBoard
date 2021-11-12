@@ -29,13 +29,17 @@ const Jobs = () => {
     return (
         <div className="Jobs">
             <div className="Jobs-title">Jobs</div>
+            <form className="Jobs-search">
+                <input id="Jobs-input" type="text" placeholder="Enter job title"/>
+                <button id="Jobs-search-btn">Search</button>
+            </form>
             {jobs.map(job => (
                 <div className="Jobs-job">
                     <div className="Jobs-job-title">{job.title}</div>
                     <div className="Jobs-job-company-name">Company: {job.companyName}</div>
-                    <div className="Jobs-job-salary">Salary: {job.salary}</div>
-                    <div className="Jobs-job-equity">Equity: {job.equity}</div>
-                    <div className="Jobs-job-apply">Apply</div>
+                    <div className="Jobs-job-salary">Salary: ${job.salary}</div>
+                    <div className="Jobs-job-equity">Equity: {job.equity}%</div>
+                    <div className="Jobs-job-apply-btn">Apply</div>
                 </div>
             ))}
 

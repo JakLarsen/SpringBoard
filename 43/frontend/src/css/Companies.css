@@ -1,5 +1,17 @@
 
-
+.Companies-company-Navlink{
+    /* background-color: palegreen; */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10rem;
+    width: 90%;
+    max-width: 65rem;
+    padding: 0;
+    margin: 0.5rem;
+    text-decoration: none;
+}
 
 .Companies{
     background-color: rgb(245, 254, 255);
@@ -17,24 +29,91 @@
     /* background-color: purple; */
     position: relative;
     display: flex;
-    font-size: 2rem;
+    font-size: 1.8rem;
+    font-weight: 600;
     margin-bottom: 2rem;
     margin-top: 2rem;
 }
+
+.Companies-list-btn{
+    background-color: rgb(63, 205, 181);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none; 
+    width: 7rem;
+    height: 2rem;
+    border-radius: 3px;
+    color: #FFF;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+}
+.Companies-list-btn:hover{
+    cursor: pointer;
+}
+
+
+
+                    /* SEARCH FORM */
+
+
+
+.Companies-search{
+    /* background-color: rgb(198, 238, 175); */
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    width: 75%;
+    max-width: 65rem;
+}
+#Companies-input{
+    /* background-color: palevioletred;    */
+    border: 1px solid rgb(63, 205, 181);
+    height: 3rem;
+    font-size: 1.5rem;
+    border-radius: 3px;
+    width: 90%;
+}
+#Companies-search-btn{
+    background-color: rgb(63, 205, 181);
+    border: none; 
+    width: 7rem;
+    height: 3.1rem;
+    border-radius: 3px;
+    color: #FFF;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+#Companies-search-btn:hover{
+    cursor: pointer;
+}
+
+
+
+                    /* EACH COMPANY */
+
+
 
 .Companies-company{
     background-color: #FFF;
     position: relative;
     display: flex;
     flex-flow: column nowrap;
-    /* justify-content: center; */
+    justify-content: center;
     width: 90%;
     max-width: 65rem;
-    margin: 0.5rem;
+    height: 7rem;
     padding: 1rem;
+    margin-bottom: 5rem;
     box-shadow: 0px 5px 5px rgba(0,0,0,0.2);
 }
-
+.Companies-company:first-child{
+    margin-top: 5rem;
+}
 .Companies-company:last-child{
     margin-bottom: 5rem;
 }
