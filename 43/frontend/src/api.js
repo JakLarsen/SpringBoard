@@ -63,6 +63,13 @@ class JoblyApi {
     return res
   }
 
+  static async getFilteredJobs(searchTerm){
+    console.log('in getFilteredJobs()')
+    let res = await this.request(`jobs?title=${searchTerm}`)
+    console.log('Res:', res)
+    return res
+  }
+
 }
 
 // for now, put token ("testuser" / "password" on class)

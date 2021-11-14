@@ -51,6 +51,7 @@ router.post("/", ensureAdmin, async function (req, res, next) {
  */
 
 router.get("/", async function (req, res, next) {
+  console.log('GET /JOBS')
   const q = req.query;
   // arrive as strings from querystring, but we want as int/bool
   if (q.minSalary !== undefined) q.minSalary = +q.minSalary;

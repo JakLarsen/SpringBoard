@@ -30,13 +30,13 @@
                     
 
 .Jobs-search{
-    /* background-color: rgb(198, 238, 175); */
+    background-color: rgb(198, 238, 175);
     position: relative;
     display: flex;
     align-items: center;
     margin-bottom: 2rem;
     width: 75%;
-    max-width: 65rem;
+    max-width: 55rem;
 }
 #Jobs-input{
     /* background-color: palevioletred;    */
@@ -67,50 +67,10 @@
 
 
 .Jobs-job{
-    background-color: #FFF;
+    /* background-color: #FFF; */
     position: relative;
     display: flex;
     flex-flow: column nowrap;
-    /* justify-content: center; */
     width: 90%;
     max-width: 65rem;
-    margin: 0.5rem;
-    padding: 1rem;
-    box-shadow: 0px 5px 5px rgba(0,0,0,0.2);
-}
-
-.Jobs-job-title, .Jobs-job-company-name{
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: #272727;
-    margin-bottom: 1rem;
-}
-.Jobs-job-salary, .Jobs-job-equity{
-    font-size: 0.9rem;
-    color: #272727;
-}
-
-.Jobs-job:last-child{
-    margin-bottom: 5rem;
-}
-.Jobs-job-apply-btn{
-    background-color: rgb(196, 255, 196);
-    position: relative;
-    display: flex;
-    border-radius: 5px;
-    width: 4rem;
-    height: 2.4rem;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.9rem;
-    color: #272727;
-    align-self: flex-end; 
-    font-weight: 600;
-    font-size: 1.2rem;
-    box-shadow: 4px 4px 4px rgba(0,0,0,0.3);
-}
-
-.Jobs-job-apply-btn:hover{
-    cursor: pointer;
-    box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
 }

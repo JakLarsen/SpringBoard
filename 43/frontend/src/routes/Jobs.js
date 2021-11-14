@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import JoblyApi from '../api'
 import '../css/Jobs.css'
+import Job from './Job'
 
 
 
@@ -16,6 +17,7 @@ const Jobs = () => {
     ]
 
     const [jobs, setJobs] = useState(INITIAL_JOBS)
+    const [formData, setFormData] = useState("")
 
     useEffect(()=>{
         async function getJobs(){
@@ -26,20 +28,47 @@ const Jobs = () => {
         getJobs()
     },[])
 
+
+    const handleSearchData = (e) => {
+        const {name, value} = e.target
+        setFormData(formData => (
+            {
+                ...formData,
+                [name]: value
+            }
+        ))
+        console.log(name, value)
+    }
+    
+    const handleSearchSubmit = async (e) => {
+        e.preventDefault();
+        let ourSearchTerm = formData.JobsInput
+        console.log(ourSearchTerm)
+        let ourJobs = await JoblyApi.getFilteredJobs(ourSearchTerm)
+        setJobs(ourJobs.jobs)
+    }
+
+    const repopulateJobs = async () => {
+        const res = await JoblyApi.getJobs()
+            setJobs([...jobs, ...res.jobs])
+            console.log(res)
+    }
+
     return (
         <div className="Jobs">
             <div className="Jobs-title">Jobs</div>
-            <form className="Jobs-search">
-                <input id="Jobs-input" type="text" placeholder="Enter job title"/>
+            <div onClick={repopulateJobs} className="Companies-list-btn">Back to List</div>
+            <form onSubmit={handleSearchSubmit} className="Jobs-search">
+                <input 
+                    id="Jobs-input" name="JobsInput" 
+                    type="text" placeholder="Enter job title"
+                    onChange={handleSearchData}
+                />
                 <button id="Jobs-search-btn">Search</button>
             </form>
             {jobs.map(job => (
                 <div className="Jobs-job">
-                    <div className="Jobs-job-title">{job.title}</div>
-                    <div className="Jobs-job-company-name">Company: {job.companyName}</div>
-                    <div className="Jobs-job-salary">Salary: ${job.salary}</div>
-                    <div className="Jobs-job-equity">Equity: {job.equity}%</div>
-                    <div className="Jobs-job-apply-btn">Apply</div>
+                    <Job job={job}/>
                 </div>
             ))}
 

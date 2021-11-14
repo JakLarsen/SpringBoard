@@ -46,12 +46,14 @@ router.post("/", ensureAdmin, async function (req, res, next) {
  * Can filter on provided search filters:
  * - minEmployees
  * - maxEmployees
- * - nameLike (will find case-insensitive, partial matches)
+ * - name (will find case-insensitive, partial matches)
  *
  * Authorization required: none
  */
 
 router.get("/", async function (req, res, next) {
+  console.log('GET /companies')
+  console.log(req.query)
   const q = req.query;
   // arrive as strings from querystring, but we want as ints
   if (q.minEmployees !== undefined) q.minEmployees = +q.minEmployees;

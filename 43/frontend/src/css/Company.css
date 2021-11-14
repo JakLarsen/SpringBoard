@@ -1,0 +1,45 @@
+
+
+
+.Company{
+    /* background-color: rgb(99, 223, 99); */
+    color: #272727;
+    overflow: scroll;
+}
+.Company-top-wrap{
+    /* background-color: paleturquoise; */
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    margin: 4rem 0 2rem 0;
+    padding: 1rem;
+}
+.Company-back-btn{
+    background-color: palegreen;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-weight: 600;
+    width: 5rem;
+    height: 3rem;
+}
+.Company-back-btn:hover{
+    cursor: pointer;
+}
+.Company-text-wrap{
+    /* background-color: palevioletred; */
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    margin-left: 1rem;
+}
+.Company-title{
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+.Company-description{
+    max-width: 45rem;
+}
