@@ -7,16 +7,7 @@ import Job from './Job'
 
 const Jobs = () => {
 
-    const INITIAL_JOBS = [
-        {
-            title: "Jake's New Job Role",
-            companyName: "Evil Empire",
-            salary: 1000000,
-            equity: 100
-        }
-    ]
-
-    const [jobs, setJobs] = useState(INITIAL_JOBS)
+    const [jobs, setJobs] = useState([])
     const [formData, setFormData] = useState("")
 
     useEffect(()=>{
