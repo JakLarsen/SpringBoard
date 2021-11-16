@@ -7,6 +7,7 @@ import UserContext from "./UserContext";
 import JoblyApi from './api';
 import useLocalStorage from "./hooks/useLocalStorage";
 import jwt from "jsonwebtoken";
+import Loading from './Loading'
 
 
 // Key name for storing token in localStorage for "remember me" re-login
@@ -48,6 +49,7 @@ function App() {
     // to false to control the spinner.
     setInfoLoaded(false);
     getCurrentUser();
+    console.log('App main function, Current User:', currentUser)
   }, [token]);
 
   /** Handles site-wide logout. */
@@ -83,6 +85,8 @@ function App() {
       return { success: false, errors };
     }
   }
+
+  if (!infoLoaded) return <Loading/>;
 
   return (
     <div className="App">

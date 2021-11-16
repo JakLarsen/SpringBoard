@@ -11,6 +11,7 @@ import Jobs from './routes/Jobs'
 import Profile from "./routes/Profile";
 import Company from './routes/Company'
 import Logout from "./routes/Logout";
+import PrivateRoute from './PrivateRoute'
 
 
 
@@ -19,15 +20,45 @@ const RouteHandler = ({login, signup}) => {
     return(
         <div className="RouteHandler">
             <Routes>
+                
                 <Route exact path="/" element={<Home/>}/>
                 <Route exact path="/welcome" element={<Welcome/>}/>
                 <Route exact path="/login" element={<Login login={login}/>}/>
                 <Route exact path="/logout" element={<Logout/>}/>
                 <Route exact path="/signup" element={<Signup signup={signup}/>}/>
-                <Route exact path="/companies" element={<Companies/>}/>
-                <Route exact path="/companies/:handle" element={<Company/>}/>
-                <Route exact path="/jobs" element={<Jobs/>}/>
-                <Route exact path="/profile" element={<Profile/>}/>
+                
+                <Route 
+                    exact path="/companies" 
+                    element={
+                        <PrivateRoute>
+                            <Companies/>
+                        </PrivateRoute>
+                    }
+                />
+                <Route 
+                    exact path="/companies/:handle" 
+                    element={
+                        <PrivateRoute>
+                            <Company/>
+                        </PrivateRoute>
+                    }
+                />
+                <Route 
+                    exact path="/jobs" 
+                    element={
+                        <PrivateRoute>
+                            <Jobs/>
+                        </PrivateRoute>
+                    }
+                />
+                <Route 
+                    exact path="/profile" 
+                    element={
+                        <PrivateRoute>
+                            <Profile/>
+                        </PrivateRoute>
+                    }
+                />
             </Routes>
         </div>
     )
