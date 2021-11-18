@@ -1,0 +1,33 @@
+
+
+                    Trees
+
+- All elements of a tree are referred to as Nodes
+- Ancestors are any nodes that are above the anscestorial line of a node
+- Parents are any nodes that are directly above some other node
+- Children are any nodes that are directly connected below some other nodes
+- Descendents are any nodes that are in the descendent line of a node
+- Root node - the top of the tree (necessity in a tree)
+    - Think HTML element in a DOM tree, etc.
+- Leaf node - a node without children - the end of the line
+
+
+
+                    Binary tree
+
+- A node can have at MOST 2 children  (0,1,2)
+
+                    n-ary tree
+    
+- Generic tree with no constraint on node children
+
+                    DEPTH FIRST SEARCH
+
+- UTILIZES A STACK
+- Good for finding if something exists in a tree
+
+                    BREDTH FIRST SEARCH
+    
+- UTILIZES A QUEUE
+- Good for finding the highest or lowest tier of duplicate node values in a tree
+- How to figure out what levle the lowest tier of match is???
