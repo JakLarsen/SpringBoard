@@ -51,6 +51,11 @@ class JoblyApi {
     return res
   }
 
+  static async getJobByID(id){
+    console.log('in getJobByID()')
+    let res = await this.request(`jobs/${id}`)
+    return res
+  }
   static async getJobs(){
     console.log('in getJobs()')
     let res = await this.request(`jobs`)
@@ -89,6 +94,22 @@ class JoblyApi {
   static async getCurrentUser(username) {
     let res = await this.request(`users/${username}`);
     return res.user;
+  }
+
+  static async applyToJob(data){
+    let res = await this.request(`users/${data.username}/jobs/${data.jobID}`, data, "post");
+    console.log('applyToJob', res)
+    return res
+  }
+
+  static async getUserAppliedJobs(data){
+    let res = await this.request(`users/${data.username}/jobs/applied`)
+    return res.jobs
+  }
+
+  static async removeApplication(data){
+    let res = await this.request(`users/${data.username}/jobs/${data.jobID}`, data, "delete")
+    return res
   }
 
 }

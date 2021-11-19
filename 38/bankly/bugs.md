@@ -13,7 +13,7 @@
     - TESTED with data sent to update username and password if they are there in the body
 - BUG #4: PATCH('/users/:username') Should not have isAdmin middleware
     - We need to allow non-admin, but same users to still have access
-    - TESTED: users have access but not non-users
+    - TESTED: same user has access but not non-users
 - BUG #5: POST ('/auth/login) is not awaiting the User query response which is a promise.
     - This is leading to 'admin' not being saved to the payload.
     - SOLUTION: Add 'await' keyword to await the promise

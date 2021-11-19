@@ -88,13 +88,15 @@ function timeWord(string){
 }
 
 
-// console.log(timeWord('00:00')) //=> midnight
-// console.log(timeWord('01:00')) //=> one AM
-// console.log(timeWord('12:00')) //=> noon
-// console.log(timeWord('04:15')) //=> four fifteen AM
-// console.log(timeWord('05:05')) //=> five oh five AM
-// console.log(timeWord('00:01')) //=> twelve oh one AM
-// console.log(timeWord('12:15')) //=> twelve fifteen PM
-// console.log(timeWord('16:07')) //=> four oh seven PM
+console.log(timeWord('00:00')) //=> midnight
+console.log(timeWord('01:00')) //=> one AM
+console.log(timeWord('12:00')) //=> noon
+console.log(timeWord('04:15')) //=> four fifteen AM
+console.log(timeWord('05:05')) //=> five oh five AM
+console.log(timeWord('00:01')) //=> twelve oh one AM
+console.log(timeWord('12:15')) //=> twelve fifteen PM
+console.log(timeWord('16:07')) //=> four oh seven PM
+console.log(timeWord('13:12')) //=> 
+console.log(timeWord('13:12')) //=> 
 
 module.exports = {timeWord}

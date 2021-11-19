@@ -1,22 +1,40 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import JoblyApi from '../api'
 import '../css/Jobs.css'
 import Job from './Job'
+import UserContext from "../UserContext";
 
 
 
 const Jobs = () => {
 
+    const { currentUser } = useContext(UserContext);
+    console.log(`in Jobs, currentUser: `, currentUser)
+
     const [jobs, setJobs] = useState([])
     const [formData, setFormData] = useState("")
+    const [jobsAppliedFor, setJobsAppliedFor] = useState({})
+
+    const getJobs = async () => {
+        const res = await JoblyApi.getJobs()
+        setJobs([...jobs, ...res.jobs])
+    }
+
+    const getJobsAppliedFor = async () => {
+        console.log('in getJobsAppliedFor; Jobs')
+
+        let jobs = new Set()
+        let username = currentUser.username
+        const res = await JoblyApi.getUserAppliedJobs({username})
+        res.map(job => (
+            jobs.add(job.job_id)
+        ))
+        setJobsAppliedFor([...jobs])
+    }
 
     useEffect(()=>{
-        async function getJobs(){
-            const res = await JoblyApi.getJobs()
-            setJobs([...jobs, ...res.jobs])
-            console.log(res.jobs[0])
-        }
         getJobs()
+        getJobsAppliedFor()
     },[])
 
 
@@ -28,13 +46,11 @@ const Jobs = () => {
                 [name]: value
             }
         ))
-        console.log(name, value)
     }
     
     const handleSearchSubmit = async (e) => {
         e.preventDefault();
         let ourSearchTerm = formData.JobsInput
-        console.log(ourSearchTerm)
         let ourJobs = await JoblyApi.getFilteredJobs(ourSearchTerm)
         setJobs(ourJobs.jobs)
     }
@@ -42,7 +58,45 @@ const Jobs = () => {
     const repopulateJobs = async () => {
         const res = await JoblyApi.getJobs()
             setJobs([...jobs, ...res.jobs])
-            console.log(res)
+    }
+
+    const handleApply = async (e) => {
+        console.log('in handleApply()')
+
+        const username = currentUser.username
+        const jobID = parseInt(e.target.dataset.id)
+        const data = {username, jobID}
+
+        console.log(jobID)
+        console.log('checkIfApplied: ', checkIfApplied(jobID))
+        if (checkIfApplied(jobID)){
+            console.log(`Unapplying to job: `, jobID)
+            const res = await JoblyApi.removeApplication(data)
+            const newJobApps = jobsAppliedFor.filter(id => id !== jobID) 
+            setJobsAppliedFor([...newJobApps])
+        }
+        else{
+            try{
+                const ourApplicationRes = await JoblyApi.applyToJob(data)
+                const newJobApps = jobsAppliedFor
+                newJobApps.push(ourApplicationRes.applied)
+                setJobsAppliedFor([...newJobApps])
+            }
+            catch(e){
+                console.log("Error: ", e)
+            }
+        }
+    }
+
+    const checkIfApplied = (jobID) => {
+        console.log(`in checkIfApplied, our applications: `, jobsAppliedFor, `our jobID: `, jobID)
+        try{
+            console.log(jobsAppliedFor.includes(jobID))
+            return jobsAppliedFor.includes(jobID)
+        }
+        catch(e){
+            console.log(`Error, check currentUser: `, currentUser, e)
+        }
     }
 
     return (
@@ -59,7 +113,7 @@ const Jobs = () => {
             </form>
             {jobs.map(job => (
                 <div className="Jobs-job">
-                    <Job job={job}/>
+                    <Job job={job} handleApply={handleApply} applied={checkIfApplied(job.id)}/>
                 </div>
             ))}
 

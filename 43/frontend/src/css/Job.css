@@ -39,11 +39,16 @@
     align-self: flex-end; 
     font-weight: 600;
     font-size: 1.2rem;
-    box-shadow: 4px 4px 4px rgba(0,0,0,0.3);
+    /* box-shadow: 4px 4px 4px rgba(0,0,0,0.3); */
     margin: 1rem;
 }
 .Job-apply-btn:hover{
     cursor: pointer;
     box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+}
+
+.unapplied{
+    background-color: rgb(253, 137, 137);
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.3);
 }
 

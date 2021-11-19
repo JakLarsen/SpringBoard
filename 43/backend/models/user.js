@@ -239,6 +239,35 @@ class User {
            VALUES ($1, $2)`,
         [jobId, username]);
   }
+
+  static async removeApplication(username, jobId){
+    let result = await db.query(
+      `DELETE
+       FROM applications
+       WHERE username = $1 AND job_id = $2
+       RETURNING username, job_id`,
+    [username, jobId],
+    );
+    const application = result.rows[0];
+
+    if (!application) throw new NotFoundError(`N o application for job: ${job_Id}`);
+}
+
+
+  static async getJobsAppliedFor(username){
+        
+    const jobs = await db.query(
+      `SELECT job_id
+      FROM applications
+      WHERE username = $1`,
+      [username]
+    )
+    const application = jobs.rows[0]
+
+    if (!application) throw new NotFoundError (`No applications found for: ${username}`)
+
+    return jobs
+  }
 }
 
 

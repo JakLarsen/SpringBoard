@@ -137,5 +137,27 @@ router.post("/:username/jobs/:id", ensureCorrectUserOrAdmin, async function (req
   }
 });
 
+router.get('/:username/jobs/applied', ensureCorrectUserOrAdmin, async function (req, res, next) {
+  try{
+    const jobsRes = await User.getJobsAppliedFor(req.params.username)
+    const jobs = jobsRes.rows
+    return res.json({jobs})
+  }
+  catch(err){
+    return next(err)
+  }
+});
+
+  router.delete("/:username/jobs/:id", ensureCorrectUserOrAdmin, async function (req, res, next) {
+    try {
+      const jobId = +req.params.id;
+      await User.removeApplication(req.params.username, jobId);
+      return res.json({ removedApplication: jobId });
+    } catch (err) {
+      return next(err);
+    }
+});
+
+
 
 module.exports = router;

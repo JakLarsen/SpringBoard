@@ -30,7 +30,7 @@ Answer the following questions below:
 
 - What is a mock? What are some things you would mock?
 
-  - Mocking is used often in unit testing to substitute a method, etc. when you need to test behavior of a function or section of code but not its exact functionality. I.E. if you have an impractical piece of funcitonality where you are simply trying to test if another piece of functionality works if the first gives you number, you can mock the first to a simple function that provides an expected number.
+  - Mocking is used often in unit testing to substitute a method, etc. when you need to test behavior of a function or section of code but not its exact functionality. I.E. if you have an impractical piece of funcitonality where you are simply trying to test if another piece of functionality works if the first gives you a number, you can mock the first to a simple function that provides an expected number.
 
 - What is continuous integration?
 
@@ -39,7 +39,7 @@ Answer the following questions below:
 - What is an environment variable and what are they used for?
 
   - An environment variable is one whose value is set outside the program itself which can be loaded and accessed by the program
-  - They are often used to prevent the need for re-lease of the application due to changes that wouldn't alter it's functionality and usability.
+  - They are often used to prevent the need for re-release of the application due to changes that wouldn't alter it's functionality and usability.
 
 - What is TDD? What are some benefits and drawbacks?
 
