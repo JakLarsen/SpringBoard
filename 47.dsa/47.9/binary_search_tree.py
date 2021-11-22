@@ -78,13 +78,73 @@ class BinarySearchTree:
             else:
                 current_node = current_node.left
         return "Not Found"
+    
+    def findRecursive(self, current_node, val):
 
-    # def findRecursively(self, val):
+        if current_node.val == val:
+            return current_node
+        elif val > current_node.val:
+            if current_node.right:
+                return self.findRecursive(current_node.right, val)
+            else:
+                return None
+        elif val < current_node.val:
+            if current_node.left:
+                return self.findRecursive(current_node.left, val)
+            else:
+                return None
+        return None
+
+        
+    # DFS PREORDER CLR
+    def DFSPreorder(self, current_node, node_list = []):
+        
+        if(current_node):
+            node_list.append(current_node.val)
+            self.DFSPreorder(current_node.left)
+            self.DFSPreorder(current_node.right)
+        return node_list
 
 
+    # DFS INORDER LCR
+    def DFSInorder(self, current_node, node_list=[]):
+        
+        if current_node:
+            self.DFSInorder(current_node.left)
+            node_list.append(current_node.val)
+            self.DFSInorder(current_node.right)
+        return node_list
+            
+
+    # DFS POSTORDER LRC
+    def DFSPostorder(self, current_node, node_list=[]):
+
+        if current_node:
+            self.DFSPostorder(current_node.left)
+            self.DFSPostorder(current_node.right)
+            node_list.append(current_node.val)
+        return node_list
+
+    # BFS
+    def BFS(self, current_node, node_list=[], bfs_pop_nodes=[]):
+
+        if not current_node:
+            return node_list 
+        queue = [current_node]
+        node_list.append(current_node.val)
+
+        while queue:
+            current_node = queue.pop(0)
+            if current_node.left:
+                node_list.append(current_node.left.val)
+                queue.append(current_node.left)
+            if current_node.right:
+                node_list.append(current_node.right.val)
+                queue.append(current_node.right)
+        return node_list
 
 
-
+#DRIVER
 
 node_A = Node('A')
 node_B = Node('B')
@@ -119,3 +179,8 @@ our_tree.traverse()
 our_tree.insertIteratively(node_P)
 print('Traversing')
 our_tree.traverse()
+print(our_tree.findRecursive(node_E, 'H'))
+print('DFSPreorder: ', our_tree.DFSPreorder(node_E))
+print('DFSInorder: ', our_tree.DFSInorder(node_E))
+print('DFSPostorder: ', our_tree.DFSPostorder(node_E))
+print('BFS: ', our_tree.BFS(node_E))
